@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+  <title id="title">Elisha Solar coverage map placeholder</title>
+  <desc id="desc">A schematic placeholder map of Kenya showing the five coverage regions served by Elisha Solar. Replace with a licensed Kenyan county map before launch.</desc>
+  <rect width="720" height="520" fill="#F6F7F8"/>
+  <g fill="#E4EDE7" stroke="#CFE0D5" stroke-width="2">
+    <path d="M120 210 L250 150 L360 170 L400 250 L330 320 L200 330 L120 280 Z"/>
+    <path d="M400 250 L520 210 L590 260 L560 350 L450 380 L330 320 Z"/>
+    <path d="M250 150 L360 90 L470 110 L520 210 L400 250 L360 170 Z"/>
+    <path d="M520 210 L620 180 L690 230 L660 330 L560 350 L590 260 Z"/>
+    <path d="M200 330 L330 320 L450 380 L420 470 L260 470 L170 410 Z"/>
+  </g>
+  <g font-family="Open Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#1A2A36">
+    <text x="150" y="245">Nairobi Metro</text>
+    <text x="420" y="300">Central and Rift Valley</text>
+    <text x="300" y="140">Western and Nyanza</text>
+    <text x="545" y="245">Coast</text>
+    <text x="240" y="410">North and Eastern</text>
+  </g>
+  <g>
+    <circle cx="205" cy="228" r="9" fill="#32C36C"/>
+    <circle cx="205" cy="228" r="18" fill="none" stroke="#32C36C" stroke-width="2" opacity="0.45"/>
+    <text x="222" y="214" font-family="Open Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f8b4a">Nairobi HQ</text>
+    <circle cx="470" cy="290" r="6" fill="#32C36C"/>
+    <circle cx="333" cy="150" r="6" fill="#32C36C"/>
+    <circle cx="575" cy="240" r="6" fill="#32C36C"/>
+    <circle cx="280" cy="408" r="6" fill="#32C36C"/>
+  </g>
+  <text x="40" y="495" font-family="Open Sans, Arial, sans-serif" font-size="12" fill="#6B7F88">Schematic placeholder. All 47 counties are served. Replace with a licensed map before launch.</text>
+</svg>
