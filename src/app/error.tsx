@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { RotateCcw, Sun } from "lucide-react";
+import { RotateCcw } from "lucide-react";
+import SunMark from "@/components/ui/SunMark";
 import { site, whatsappLink } from "@/lib/site";
 
 export default function ErrorPage({
@@ -18,16 +19,15 @@ export default function ErrorPage({
 
   return (
     <section className="mx-auto flex min-h-[70vh] max-w-3xl flex-col items-center justify-center px-6 py-20 text-center">
-      <span className="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--primary)]/10">
-        <Sun className="h-10 w-10 text-[var(--primary)]" aria-hidden="true" />
-      </span>
-      <p className="mt-6 text-xs font-bold uppercase tracking-[0.24em] text-[var(--primary)]">
+      <SunMark className="h-10 w-10 text-brand-ink" />
+      <p className="mt-6 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-ink">
+        <span aria-hidden="true" className="h-px w-6 bg-brand-ink" />
         Error 500
       </p>
-      <h1 className="mt-3 font-[Roboto] text-4xl font-black leading-tight text-[var(--dark)] sm:text-5xl">
+      <h1 className="mt-3 font-[Roboto] text-[2.25rem] font-bold leading-tight text-ink sm:text-[3rem] sm:text-5xl">
         Something went dark on our side.
       </h1>
-      <p className="mt-4 max-w-lg text-sm leading-relaxed text-[var(--dark)]/70">
+      <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted">
         This is our fault, not yours. Try the page again. If it keeps failing, call or message us
         and we will finish what you were doing.
       </p>
@@ -45,11 +45,11 @@ export default function ErrorPage({
           WhatsApp {site.phone}
         </a>
       </div>
-      <p className="mt-6 text-xs text-[var(--dark)]/50">
+      <p className="mt-6 text-xs text-faint">
         Reference{" "}
-        <span className="font-mono text-[var(--dark)]/70">{error.digest ?? "not assigned"}</span>
+        <span className="font-mono text-muted">{error.digest ?? "not assigned"}</span>
         . You can also{" "}
-        <Link href="/" className="font-semibold text-[var(--primary)] hover:underline">
+        <Link href="/" className="font-semibold text-brand-ink hover:underline">
           return home
         </Link>
         .

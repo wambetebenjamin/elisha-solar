@@ -5,15 +5,36 @@
   (css/style.css). Do not rename or re-value these.
 */
 :root {
-    --primary: #32C36C;
-    --light: #F6F7F8;
-    --dark: #1A2A36;
+  --primary: #32C36C;
+  --light: #F6F7F8;
+  --dark: #1A2A36;
+
+  /*
+    Contrast-safe working palette. Every value below is checked against
+    the surface it sits on at 4.5:1 or better, so no text can wash out.
+  */
+  --ink: #12222C;
+  --brand-ink: #0B6B3A;
+  --brand-deep: #095A31;
+  --brand-soft: #EAF5EF;
+  --muted: #46595F;
+  --faint: #5C6E74;
+  --line: rgba(18, 34, 44, 0.14);
+  --on-dark-muted: #C3CFD3;
 }
 
 @theme inline {
   --color-primary: var(--primary);
   --color-light: var(--light);
   --color-dark: var(--dark);
+  --color-ink: var(--ink);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-on-dark-muted: var(--on-dark-muted);
   --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Roboto", ui-sans-serif, system-ui, sans-serif;
 }
@@ -30,9 +51,12 @@ html {
 
 body {
   background-color: #ffffff;
-  color: var(--dark);
+  color: var(--ink);
   font-family: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -44,17 +68,23 @@ h6,
 .display-heading {
   font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--dark);
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 ::selection {
-  background: var(--primary);
+  background: var(--brand-ink);
   color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--brand-ink);
   outline-offset: 3px;
 }
 
@@ -72,80 +102,223 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* Utility surfaces built on template tokens */
+/* Surfaces */
 .section-tint {
   background-color: var(--light);
 }
 
-.text-brand {
-  color: var(--primary);
-}
-
-.bg-brand {
-  background-color: var(--primary);
-}
-
-.bg-ink {
-  background-color: var(--dark);
-}
-
-.ring-brand {
-  box-shadow: 0 0 0 1px rgba(50, 195, 108, 0.35);
+.section-line {
+  border-top: 1px solid var(--line);
 }
 
 .card-surface {
   background: #ffffff;
-  border: 1px solid rgba(26, 42, 54, 0.08);
-  border-radius: 18px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.card-interactive {
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.card-interactive:hover {
+  border-color: rgba(18, 34, 44, 0.34);
+  transform: translateY(-2px);
+}
+
+/* Editorial eyebrow: short rule, then a small uppercase label */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-ink);
+}
+
+.eyebrow::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  flex: none;
+}
+
+.eyebrow-on-dark {
+  color: #9EE7BA;
+}
+
+/* Buttons: squared, quiet, no glows */
+.btn-brand,
+.btn-ghost,
+.btn-on-dark,
+.btn-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 3px;
+  padding: 0.85rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.005em;
+  line-height: 1.2;
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
 }
 
 .btn-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--primary);
+  background: var(--brand-ink);
   color: #ffffff;
-  border-radius: 999px;
-  padding: 0.85rem 1.6rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  border: 1px solid var(--brand-ink);
 }
 
 .btn-brand:hover {
-  background: #2bb160;
-  box-shadow: 0 12px 28px -12px rgba(50, 195, 108, 0.85);
+  background: var(--brand-deep);
+  border-color: var(--brand-deep);
 }
 
 .btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 1px solid rgba(26, 42, 54, 0.18);
-  color: var(--dark);
-  border-radius: 999px;
-  padding: 0.85rem 1.6rem;
-  font-weight: 600;
-  font-size: 0.95rem;
   background: #ffffff;
-  transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  color: var(--ink);
+  border: 1px solid rgba(18, 34, 44, 0.3);
 }
 
 .btn-ghost:hover {
-  border-color: var(--primary);
-  color: #1f8b4a;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #ffffff;
 }
 
+.btn-on-dark {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-on-dark:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--ink);
+}
+
+.btn-quiet {
+  background: transparent;
+  color: var(--brand-ink);
+  border: 1px solid transparent;
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+}
+
+.btn-quiet:hover {
+  color: var(--brand-deep);
+}
+
+/* Small inline controls */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: #ffffff;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.chip:hover {
+  border-color: rgba(18, 34, 44, 0.34);
+  color: var(--ink);
+}
+
+.chip[data-active="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #ffffff;
+}
+
+/* Text link with a rule that grows on hover */
+.link-rule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--brand-ink);
+  border-bottom: 1px solid rgba(11, 107, 58, 0.35);
+  padding-bottom: 1px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.link-rule:hover {
+  color: var(--brand-deep);
+  border-color: var(--brand-deep);
+}
+
+/* Form fields, high contrast in every state */
+.field {
+  width: 100%;
+  border: 1px solid rgba(18, 34, 44, 0.24);
+  border-radius: 3px;
+  background: #ffffff;
+  color: var(--ink);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.9375rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field::placeholder {
+  color: #63747A;
+  opacity: 1;
+}
+
+.field:hover {
+  border-color: rgba(18, 34, 44, 0.4);
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--brand-ink);
+  box-shadow: 0 0 0 3px rgba(11, 107, 58, 0.16);
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field-error {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #A32222;
+}
+
+/* Article body */
 .prose-solar p {
-  margin-bottom: 1.1rem;
-  line-height: 1.85;
-  color: #33474f;
+  margin-bottom: 1.15rem;
+  line-height: 1.8;
+  color: var(--muted);
 }
 
 .prose-solar h2 {
-  margin-top: 2.25rem;
+  margin-top: 2.4rem;
   margin-bottom: 0.85rem;
   font-size: 1.5rem;
+}
+
+.prose-solar h3 {
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
+  font-size: 1.125rem;
 }
 
 .prose-solar ul {
@@ -156,7 +329,23 @@ html.lenis body {
 .prose-solar li {
   margin-bottom: 0.6rem;
   line-height: 1.7;
-  color: #33474f;
+  color: var(--muted);
+}
+
+.prose-solar a {
+  color: var(--brand-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-solar strong {
+  color: var(--ink);
+}
+
+/* Numeric alignment */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 /* WhatsApp button entrance pulse */
@@ -179,13 +368,13 @@ html.lenis body {
 /* Voice tour speaking ring */
 @keyframes voice-ring {
   0% {
-    box-shadow: 0 0 0 0 rgba(50, 195, 108, 0.5);
+    box-shadow: 0 0 0 0 rgba(11, 107, 58, 0.55);
   }
   70% {
-    box-shadow: 0 0 0 16px rgba(50, 195, 108, 0);
+    box-shadow: 0 0 0 16px rgba(11, 107, 58, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(50, 195, 108, 0);
+    box-shadow: 0 0 0 0 rgba(11, 107, 58, 0);
   }
 }
 
@@ -193,21 +382,21 @@ html.lenis body {
   animation: voice-ring 1.6s ease-out infinite;
 }
 
-/* Sun preloader rays */
+/* Preloader: a horizon sunrise, no radial star */
 @keyframes ray-rise {
   0% {
     opacity: 0;
-    transform: scaleY(0.2);
+    transform: scaleX(0.2);
   }
   100% {
     opacity: 1;
-    transform: scaleY(1);
+    transform: scaleX(1);
   }
 }
 
 @keyframes sun-rise {
   0% {
-    transform: translateY(26px);
+    transform: translateY(18px);
     opacity: 0.2;
   }
   100% {
@@ -227,8 +416,8 @@ html.lenis body {
 }
 
 .preloader-ray {
-  transform-origin: bottom center;
-  animation: ray-rise 0.6s ease-out both;
+  transform-origin: left center;
+  animation: ray-rise 0.55s ease-out both;
 }
 
 .preloader-sun {
@@ -237,6 +426,29 @@ html.lenis body {
 
 .preloader-exit {
   animation: preloader-fade 0.45s ease-in forwards;
+}
+
+/* Reveal: visible by default, hidden only once JS confirms it can animate */
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 20px));
+}
+
+[data-reveal] {
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal="in"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Fallback: no scripting means no hiding at all */
+.no-js [data-reveal] {
+  opacity: 1;
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -254,5 +466,19 @@ html.lenis body {
   .wa-pulse,
   .voice-ring-active {
     animation: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Windows high contrast: keep every surface legible */
+@media (forced-colors: active) {
+  .card-surface,
+  .field,
+  .chip {
+    border: 1px solid CanvasText;
   }
 }

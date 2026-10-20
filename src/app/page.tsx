@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  BatteryCharging,
-  BadgeCheck,
-  Banknote,
-  ClipboardCheck,
-  Home,
-  MonitorSmartphone,
-  ShieldCheck,
-  Sun,
-  Wrench,
-} from "lucide-react";
+import { ArrowRight, BadgeCheck, Banknote, ShieldCheck } from "lucide-react";
 import HeroParallax from "@/components/HeroParallax";
 import StatCounter from "@/components/StatCounter";
 import SolutionCard from "@/components/SolutionCard";
@@ -32,93 +20,145 @@ export const metadata: Metadata = {
 };
 
 const whyIcons = {
-  home: Home,
-  shield: ShieldCheck,
-  warranty: BadgeCheck,
-  monitor: MonitorSmartphone,
-  wallet: Banknote,
+  home: HomeIcon,
+  shield: ShieldIcon,
+  warranty: BadgeIcon,
+  monitor: MonitorIcon,
+  wallet: WalletIcon,
 } as const;
 
-const stepIcons = [ClipboardCheck, Sun, Wrench, BatteryCharging, MonitorSmartphone] as const;
+function HomeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 10.5 12 3l9 7.5" />
+      <path d="M5.5 9.5V21h13V9.5" />
+      <path d="M10 21v-5.5h4V21" />
+    </svg>
+  );
+}
+
+function ShieldIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3 4.5 6v6c0 4.5 3 7.6 7.5 9 4.5-1.4 7.5-4.5 7.5-9V6L12 3Z" />
+      <path d="m9 12 2.2 2.2L15.5 10" />
+    </svg>
+  );
+}
+
+function BadgeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="9" r="6" />
+      <path d="m8.5 14-2 7 5.5-2.8L17.5 21l-2-7" />
+      <path d="m9.8 9 1.6 1.6L14.4 7.6" />
+    </svg>
+  );
+}
+
+function MonitorIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2.5" y="4" width="19" height="13" rx="1.5" />
+      <path d="M8 21h8M12 17v4" />
+      <path d="m6.5 12 3-3 2.5 2.5L15.5 7l2 2" />
+    </svg>
+  );
+}
+
+function WalletIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2.5" y="6" width="19" height="13" rx="2" />
+      <path d="M2.5 10h19" />
+      <circle cx="17" cy="14.5" r="1.2" />
+    </svg>
+  );
+}
 
 export default function HomePage() {
   const featuredProjects = projects.slice(0, 4);
 
   return (
     <>
-      <section className="relative isolate min-h-[640px] overflow-hidden bg-[var(--dark)]">
-        <HeroParallax
-          src="/images/hero-rooftop-solar-kenya.jpg"
-          alt="Solar panels installed on a Kenyan home rooftop under a clear sky"
-          priority
-        />
-        <div className="relative mx-auto flex min-h-[640px] max-w-7xl flex-col justify-center px-6 py-24">
-          <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur">
-              <Sun className="h-3.5 w-3.5 text-[var(--primary)]" aria-hidden="true" />
-              Kenya wide, Nairobi based
-            </span>
-            <h1 className="mt-6 font-[Roboto] text-4xl font-black leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-              Power your home. Power your future.
+      <section className="border-b border-line bg-white">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 pb-14 pt-12 lg:grid-cols-[1.02fr_1fr] lg:gap-16 lg:pb-20 lg:pt-16">
+          <div>
+            <p className="eyebrow">Kenya wide, Nairobi based</p>
+            <h1 className="mt-6 font-[Roboto] text-[2.6rem] font-bold leading-[1.02] tracking-[-0.035em] text-ink sm:text-[3.4rem] lg:text-[3.9rem]">
+              Power your home.
+              <br />
+              Power your future.
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+            <p className="mt-6 max-w-lg text-[1.0625rem] leading-[1.7] text-muted">
               Solar systems designed around your real electricity bill, installed by certified
               Kenyan engineers, and monitored long after handover. Start with a free site
               assessment anywhere in the country.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link href="/quote" className="btn-brand !px-7 !py-3.5 text-base">
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <Link href="/quote" className="btn-brand !px-6 !py-3.5">
                 Get a free quote
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <Link
-                href="/solutions"
-                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-base font-semibold text-white backdrop-blur transition hover:border-white/60 hover:bg-white/10"
-              >
+              <Link href="/solutions" className="btn-ghost !px-6 !py-3.5">
                 View packages
               </Link>
             </div>
-            <dl className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
-              <div className="flex items-center gap-2">
-                <BadgeCheck className="h-4 w-4 text-[var(--primary)]" aria-hidden="true" />
-                EPRA licensed installers
-              </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-[var(--primary)]" aria-hidden="true" />
-                10 year panel warranty
-              </div>
-              <div className="flex items-center gap-2">
-                <Banknote className="h-4 w-4 text-[var(--primary)]" aria-hidden="true" />
-                12 to 36 month payment plans
-              </div>
-            </dl>
+
+            <ul className="mt-12 grid gap-4 border-t border-line pt-6 sm:grid-cols-3">
+              {[
+                { icon: BadgeCheck, label: "EPRA licensed installers" },
+                { icon: ShieldCheck, label: "10 year panel warranty" },
+                { icon: Banknote, label: "12 to 36 month plans" },
+              ].map((item) => (
+                <li key={item.label} className="flex items-start gap-2.5">
+                  <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
+                  <span className="text-[12.5px] leading-snug text-muted">{item.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="relative">
+            <div className="relative aspect-[4/3] overflow-hidden border border-line sm:aspect-[16/11] lg:aspect-[4/4.35]">
+              <HeroParallax
+                src="/images/hero-rooftop-solar-kenya.jpg"
+                alt="Solar panels installed on a Kenyan home rooftop under a clear sky"
+                priority
+                sizes="(max-width: 1024px) 100vw, 46vw"
+              />
+            </div>
+            <div className="absolute bottom-4 left-4 max-w-[15rem] border border-line border-l-2 border-l-brand-ink bg-white px-3 py-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-ink">
+                Live systems
+              </p>
+              <p className="mt-0.5 text-[12px] leading-snug text-ink">
+                Monitored across 31 counties, every day.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-[var(--dark)]/5 bg-white">
+      <section className="border-b border-line bg-white">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
-            <StatCounter
-              key={stat.label}
-              value={stat.value}
-              suffix={stat.suffix}
-              label={stat.label}
-            />
+            <StatCounter key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} />
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20" id="solutions">
+      <section className="mx-auto max-w-7xl scroll-mt-28 px-6 py-20" id="solutions">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Our solutions"
+            index="01"
             title="Five ways Elisha Solar powers a property"
             description="Every system is sized against your own consumption, roof space and backup needs. Nothing is sold off a shelf."
           />
-          <Link href="/solutions" className="btn-ghost !py-2.5 text-sm">
+          <Link href="/solutions" className="link-rule text-[13px]">
             All solutions
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
           </Link>
         </div>
 
@@ -129,39 +169,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-tint py-20">
+      <section className="section-tint border-y border-line py-20">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeading
             eyebrow="How it works"
+            index="02"
             title="From first call to a working system in five steps"
             description="A typical home installation takes two to four weeks from assessment to handover. Nothing starts before you approve a fixed quote."
-            align="center"
           />
 
-          <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-            {processSteps.map((step, index) => {
-              const Icon = stepIcons[index] ?? Sun;
-              return (
-                <Reveal as="li" key={step.title} delay={index * 0.08} className="h-full">
-                  <div className="flex h-full flex-col rounded-2xl border border-[var(--dark)]/8 bg-white p-6">
-                    <div className="flex items-center justify-between">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--primary)]/12">
-                        <Icon className="h-5 w-5 text-[var(--primary)]" aria-hidden="true" />
-                      </span>
-                      <span className="font-[Roboto] text-2xl font-black text-[var(--dark)]/12">
-                        0{index + 1}
-                      </span>
-                    </div>
-                    <h3 className="mt-5 font-[Roboto] text-base font-bold text-[var(--dark)]">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[var(--dark)]/65">
-                      {step.description}
-                    </p>
-                  </div>
-                </Reveal>
-              );
-            })}
+          <ol className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-5">
+            {processSteps.map((step, index) => (
+              <Reveal as="li" key={step.title} delay={index * 0.06}>
+                <div className="border-t-2 border-ink pt-4">
+                  <span className="tnum font-[Roboto] text-[13px] font-bold tracking-[0.1em] text-brand-ink">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 font-[Roboto] text-[0.9375rem] font-bold leading-snug text-ink">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-[1.65] text-muted">{step.description}</p>
+                </div>
+              </Reveal>
+            ))}
           </ol>
         </div>
       </section>
@@ -169,49 +199,47 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-20">
         <SectionHeading
           eyebrow="Why Elisha Solar"
+          index="03"
           title="Built by a Kenyan team that stays after handover"
           description="We have installed across 31 counties since 2014, and every system is supported by the same crew that designed it."
         />
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           {whyElisha.map((item, index) => {
-            const Icon = whyIcons[item.icon as keyof typeof whyIcons] ?? Sun;
+            const Icon = whyIcons[item.icon as keyof typeof whyIcons] ?? BadgeIcon;
             return (
-              <Reveal key={item.title} delay={index * 0.06}>
-                <div className="card-surface h-full p-6">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--primary)]/12">
-                    <Icon className="h-5 w-5 text-[var(--primary)]" aria-hidden="true" />
-                  </span>
-                  <h3 className="mt-4 font-[Roboto] text-base font-bold text-[var(--dark)]">
+              <Reveal key={item.title} delay={index * 0.05}>
+                <div className="border-t border-line pt-5">
+                  <Icon className="h-6 w-6 text-brand-ink" />
+                  <h3 className="mt-4 font-[Roboto] text-[1.0625rem] font-bold text-ink">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--dark)]/65">
-                    {item.description}
-                  </p>
+                  <p className="mt-2 text-sm leading-[1.7] text-muted">{item.description}</p>
                 </div>
               </Reveal>
             );
           })}
-          <div className="flex flex-col justify-between rounded-2xl bg-[var(--dark)] p-6 text-white">
+          <div className="flex flex-col justify-between border-t-2 border-brand-ink bg-brand-soft p-6">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--primary)]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-ink">
                 Free assessment
               </p>
-              <p className="mt-3 font-[Roboto] text-xl font-bold leading-snug">
+              <p className="mt-3 font-[Roboto] text-[1.0625rem] font-bold leading-snug text-ink">
                 We will visit, measure and quote. No obligation, no charge.
               </p>
             </div>
-            <Link href="/quote" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[var(--primary)]">
+            <Link href="/quote" className="link-rule mt-6 self-start text-[13px]">
               Book a visit
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section-tint py-20">
+      <section className="section-tint border-y border-line py-20">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeading
             eyebrow="Savings calculator"
+            index="04"
             title="See what your bill could become"
             description="Move the slider to your average KPLC bill. The estimate updates instantly using our standard design assumptions."
           />
@@ -225,42 +253,46 @@ export default function HomePage() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Project showcase"
+            index="05"
             title="Recent installs across Kenya"
             description="Homes, farms and businesses that now run on their own roofs."
           />
-          <Link href="/projects" className="btn-ghost !py-2.5 text-sm">
+          <Link href="/projects" className="link-rule text-[13px]">
             All projects
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
           </Link>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {featuredProjects.map((project, index) => (
-            <ProjectCard key={project.slug} project={project} index={index} />
+            <Reveal key={project.slug} delay={index * 0.05} className="h-full">
+              <ProjectCard project={project} index={index} />
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="border-y border-line bg-light py-20">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeading
             eyebrow="Testimonials"
+            index="06"
             title="What clients say after the first year"
             description="Measured outcomes, not marketing promises. Names are shortened at our clients' request."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {testimonials.map((testimonial, index) => (
-              <Reveal key={testimonial.name} delay={index * 0.08} className="h-full">
+              <Reveal key={testimonial.name} delay={index * 0.06} className="h-full">
                 <figure className="card-surface flex h-full flex-col p-6">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#1f8b4a]">
-                    <BadgeCheck className="h-3.5 w-3.5" aria-hidden="true" />
+                  <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-ink">
+                    <BadgeCheck className="h-4 w-4" aria-hidden="true" />
                     Verified client
-                  </span>
-                  <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-[var(--dark)]/75">
+                  </div>
+                  <blockquote className="mt-4 flex-1 text-[0.9375rem] leading-[1.75] text-ink">
                     &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
-                  <figcaption className="mt-5 border-t border-[var(--dark)]/8 pt-4">
-                    <p className="text-sm font-bold text-[var(--dark)]">{testimonial.name}</p>
-                    <p className="text-xs text-[var(--dark)]/55">
+                  <figcaption className="mt-6 border-t border-line pt-4">
+                    <p className="text-sm font-bold text-ink">{testimonial.name}</p>
+                    <p className="mt-0.5 text-[13px] text-muted">
                       {testimonial.role}, {testimonial.location}
                     </p>
                   </figcaption>
@@ -271,59 +303,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-tint py-16">
+      <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="text-center text-xs font-bold uppercase tracking-[0.22em] text-[var(--dark)]/45">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-faint">
             Equipment we install and support
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <ul className="mt-6 flex flex-wrap items-center gap-x-10 gap-y-4 border-y border-line py-5">
             {partners.map((partner) => (
-              <div
-                key={partner.name}
-                className="rounded-full border border-[var(--dark)]/10 bg-white px-5 py-3 text-center"
-              >
-                <p className="font-[Roboto] text-sm font-bold text-[var(--dark)]">
+              <li key={partner.name} className="flex items-baseline gap-2">
+                <p className="font-[Roboto] text-sm font-bold tracking-[-0.01em] text-ink">
                   {partner.name}
                 </p>
-                <p className="text-[10px] uppercase tracking-wide text-[var(--dark)]/45">
-                  {partner.note}
-                </p>
-              </div>
+                <p className="text-[11px] uppercase tracking-[0.1em] text-faint">{partner.note}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-4">
-        <div className="relative overflow-hidden rounded-3xl bg-[var(--dark)] px-8 py-14 text-center text-white">
-          <div className="relative mx-auto max-w-2xl">
-            <h2 className="font-[Roboto] text-3xl font-black leading-tight sm:text-4xl">
-              Ready to see your own numbers?
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-white/75 sm:text-base">
-              Book a free assessment in {site.headquarters} or anywhere we cover. We will measure
-              your roof, read your bills and give you a fixed price in writing.
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
-              <Link href="/quote" className="btn-brand !px-7 !py-3.5 text-base">
+      <section className="border-t-2 border-brand-ink bg-ink">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+            <div>
+              <p className="eyebrow eyebrow-on-dark">Next step</p>
+              <h2 className="mt-5 max-w-2xl font-[Roboto] text-[1.9rem] font-bold leading-[1.1] text-white sm:text-[2.5rem]">
+                Ready to see your own numbers?
+              </h2>
+              <p className="mt-4 max-w-xl text-[0.9375rem] leading-[1.7] text-[#DCE5E8]">
+                Book a free assessment in {site.headquarters} or anywhere we cover. We will
+                measure your roof, read your bills and give you a fixed price in writing.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 lg:justify-end">
+              <Link href="/quote" className="btn-brand !px-6 !py-3.5">
                 Get a free quote
               </Link>
-              <a
-                href={`tel:${site.phone}`}
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-base font-semibold text-white transition hover:bg-white/10"
-              >
+              <a href={`tel:${site.phone}`} className="btn-on-dark !px-6 !py-3.5">
                 Call {site.phoneDisplay}
               </a>
             </div>
           </div>
-          <Image
-            src="/images/gallery-rooftop-palms.jpg"
-            alt=""
-            width={500}
-            height={375}
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-10 right-0 hidden w-72 rounded-2xl opacity-20 lg:block"
-          />
         </div>
       </section>
     </>

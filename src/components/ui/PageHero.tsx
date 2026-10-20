@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -10,20 +9,22 @@ type PageHeroProps = {
 
 export default function PageHero({ eyebrow, title, description, crumbs }: PageHeroProps) {
   return (
-    <section className="section-tint border-b border-[var(--dark)]/5">
-      <div className="mx-auto max-w-7xl px-6 py-14 sm:py-16">
+    <section className="border-b border-line bg-light">
+      <div className="mx-auto max-w-7xl px-6 py-12 sm:py-16">
         {crumbs && crumbs.length > 0 && (
-          <nav aria-label="Breadcrumb" className="mb-5">
-            <ol className="flex flex-wrap items-center gap-1 text-xs font-medium text-[var(--dark)]/55">
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-faint">
               <li>
-                <Link href="/" className="hover:text-[var(--primary)]">
+                <Link href="/" className="transition-colors hover:text-brand-ink">
                   Home
                 </Link>
               </li>
               {crumbs.map((crumb) => (
-                <li key={crumb.href} className="flex items-center gap-1">
-                  <ChevronRight className="h-3 w-3" aria-hidden="true" />
-                  <Link href={crumb.href} className="hover:text-[var(--primary)]">
+                <li key={crumb.href} className="flex items-center gap-2">
+                  <span aria-hidden="true" className="text-line">
+                    /
+                  </span>
+                  <Link href={crumb.href} className="transition-colors hover:text-brand-ink">
                     {crumb.label}
                   </Link>
                 </li>
@@ -31,15 +32,11 @@ export default function PageHero({ eyebrow, title, description, crumbs }: PageHe
             </ol>
           </nav>
         )}
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--primary)]">
-          {eyebrow}
-        </p>
-        <h1 className="mt-3 max-w-3xl font-[Roboto] text-4xl font-black leading-[1.08] text-[var(--dark)] sm:text-5xl">
+        <p className="eyebrow">{eyebrow}</p>
+        <h1 className="mt-4 max-w-3xl font-[Roboto] text-[2.1rem] font-bold leading-[1.06] text-ink sm:text-[2.9rem]">
           {title}
         </h1>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-[var(--dark)]/70">
-          {description}
-        </p>
+        <p className="mt-5 max-w-2xl text-base leading-[1.7] text-muted">{description}</p>
       </div>
     </section>
   );

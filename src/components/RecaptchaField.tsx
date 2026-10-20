@@ -41,11 +41,11 @@ export default function RecaptchaField({ challenged, onToken }: RecaptchaFieldPr
   if (!challenged) return null;
 
   return (
-    <div className="rounded-xl border border-[var(--primary)]/30 bg-[var(--primary)]/5 p-4">
-      <p className="text-sm font-semibold text-[var(--dark)]">
+    <div className="border border-line border-l-2 border-l-brand-ink bg-brand-soft p-4">
+      <p className="text-sm font-semibold text-ink">
         One quick check before we continue
       </p>
-      <p className="mt-1 text-xs leading-relaxed text-[var(--dark)]/65">
+      <p className="mt-1 text-xs leading-relaxed text-muted">
         Our automatic check was not confident enough, so please confirm you are a person.
       </p>
       <div ref={containerRef} className="mt-3 min-h-[78px]" />
@@ -55,7 +55,7 @@ export default function RecaptchaField({ challenged, onToken }: RecaptchaFieldPr
         </p>
       )}
       {recaptchaEnabled && !hasV2SiteKey() && (
-        <p className="mt-2 text-xs text-[var(--dark)]/55">
+        <p className="mt-2 text-xs text-muted">
           Using the v3 site key for this visible check. Add NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY to
           use a dedicated checkbox key.
         </p>

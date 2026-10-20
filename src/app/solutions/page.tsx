@@ -28,7 +28,7 @@ export default function SolutionsPage() {
             <a
               key={solution.slug}
               href={`#${solution.slug}`}
-              className="rounded-full border border-[var(--dark)]/12 px-4 py-2 text-sm font-semibold text-[var(--dark)]/70 transition hover:border-[var(--primary)] hover:text-[#1f8b4a]"
+              className="chip text-[13px]"
             >
               {solution.title}
             </a>
@@ -40,7 +40,7 @@ export default function SolutionsPage() {
             <section
               key={solution.slug}
               id={solution.slug}
-              className="scroll-mt-32 border-t border-[var(--dark)]/8 pt-12 first:border-t-0 first:pt-0"
+              className="scroll-mt-32 border-t border-line pt-12 first:border-t-0 first:pt-0"
             >
               <Reveal>
                 <div
@@ -48,7 +48,7 @@ export default function SolutionsPage() {
                     index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
                   }`}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-[4px]">
                     <Image
                       src={solution.image}
                       alt={solution.imageAlt}
@@ -59,41 +59,41 @@ export default function SolutionsPage() {
                   </div>
 
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--primary)]">
+                    <p className="eyebrow">
                       Solution {String(index + 1).padStart(2, "0")}
                     </p>
-                    <h2 className="mt-3 font-[Roboto] text-3xl font-black text-[var(--dark)]">
+                    <h2 className="mt-3 font-[Roboto] text-[1.9rem] font-bold text-ink">
                       {solution.title}
                     </h2>
-                    <p className="mt-4 text-sm leading-relaxed text-[var(--dark)]/70">
+                    <p className="mt-4 text-sm leading-relaxed text-muted">
                       {solution.description}
                     </p>
 
                     <dl className="mt-6 grid gap-4 sm:grid-cols-2">
-                      <div className="rounded-xl bg-[var(--light)] p-4">
-                        <dt className="text-[11px] font-semibold uppercase tracking-wide text-[var(--dark)]/50">
+                      <div className="rounded-[3px] bg-light p-4">
+                        <dt className="text-[11px] font-semibold uppercase tracking-wide text-faint">
                           Typical system size
                         </dt>
-                        <dd className="mt-1 text-sm font-bold text-[var(--dark)]">
+                        <dd className="mt-1 text-sm font-bold text-ink">
                           {solution.typicalSize}
                         </dd>
                       </div>
-                      <div className="rounded-xl bg-[var(--light)] p-4">
-                        <dt className="text-[11px] font-semibold uppercase tracking-wide text-[var(--dark)]/50">
+                      <div className="rounded-[3px] bg-light p-4">
+                        <dt className="text-[11px] font-semibold uppercase tracking-wide text-faint">
                           Estimated cost range
                         </dt>
-                        <dd className="mt-1 text-sm font-bold text-[var(--dark)]">
+                        <dd className="mt-1 text-sm font-bold text-ink">
                           {solution.costRange}
                         </dd>
                       </div>
                     </dl>
 
                     <div className="mt-6">
-                      <h3 className="text-sm font-bold text-[var(--dark)]">Who it suits</h3>
-                      <ul className="mt-2 space-y-1.5 text-sm text-[var(--dark)]/70">
+                      <h3 className="text-sm font-bold text-ink">Who it suits</h3>
+                      <ul className="mt-2 space-y-1.5 text-sm text-muted">
                         {solution.suits.map((item) => (
                           <li key={item} className="flex items-start gap-2">
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--primary)]" aria-hidden="true" />
+                            <span className="mt-[0.45rem] h-1 w-1 shrink-0 bg-brand-ink" aria-hidden="true" />
                             {item}
                           </li>
                         ))}
@@ -101,11 +101,11 @@ export default function SolutionsPage() {
                     </div>
 
                     <div className="mt-6">
-                      <h3 className="text-sm font-bold text-[var(--dark)]">Benefits</h3>
-                      <ul className="mt-2 grid gap-1.5 text-sm text-[var(--dark)]/70 sm:grid-cols-2">
+                      <h3 className="text-sm font-bold text-ink">Benefits</h3>
+                      <ul className="mt-2 grid gap-1.5 text-sm text-muted sm:grid-cols-2">
                         {solution.benefits.map((benefit) => (
                           <li key={benefit} className="flex items-start gap-2">
-                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
+                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
                             {benefit}
                           </li>
                         ))}

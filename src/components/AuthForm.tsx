@@ -79,7 +79,7 @@ export default function AuthForm({ mode, googleConfigured, callbackUrl = "/" }: 
         type="button"
         onClick={handleGoogle}
         disabled={pending}
-        className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--dark)]/15 bg-white px-4 py-3 text-sm font-semibold text-[var(--dark)] transition hover:border-[var(--primary)]/60 disabled:opacity-70"
+        className="btn-ghost w-full !py-3 text-sm disabled:opacity-70"
       >
         <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
           <path
@@ -103,17 +103,17 @@ export default function AuthForm({ mode, googleConfigured, callbackUrl = "/" }: 
       </button>
 
       <div className="my-6 flex items-center gap-4">
-        <span className="h-px flex-1 bg-[var(--dark)]/10" />
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--dark)]/40">
+        <span className="h-px flex-1 bg-line" />
+        <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-faint">
           or use your email
         </span>
-        <span className="h-px flex-1 bg-[var(--dark)]/10" />
+        <span className="h-px flex-1 bg-line" />
       </div>
 
       <form onSubmit={handleEmailContinue} noValidate className="space-y-4">
         {isSignup && (
           <div>
-            <label htmlFor="auth-name" className="text-sm font-semibold text-[var(--dark)]">
+            <label htmlFor="auth-name" className="text-sm font-semibold text-ink">
               Full name
             </label>
             <input
@@ -122,12 +122,12 @@ export default function AuthForm({ mode, googleConfigured, callbackUrl = "/" }: 
               autoComplete="name"
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm focus:border-[var(--primary)] focus:outline-none"
+              className="field mt-2"
             />
           </div>
         )}
         <div>
-          <label htmlFor="auth-email" className="text-sm font-semibold text-[var(--dark)]">
+          <label htmlFor="auth-email" className="text-sm font-semibold text-ink">
             Email address
           </label>
           <input
@@ -136,9 +136,9 @@ export default function AuthForm({ mode, googleConfigured, callbackUrl = "/" }: 
             autoComplete="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm focus:border-[var(--primary)] focus:outline-none"
+            className="field mt-2"
           />
-          <p className="mt-2 text-xs text-[var(--dark)]/55">
+          <p className="mt-2 text-xs text-muted">
             We pass this to Google so the right account is pre-selected. We never see your
             password.
           </p>
@@ -147,7 +147,7 @@ export default function AuthForm({ mode, googleConfigured, callbackUrl = "/" }: 
         {error && (
           <p
             role="alert"
-            className="flex items-start gap-2 rounded-xl bg-[#FEF2F2] px-4 py-3 text-sm text-[#9a3412]"
+            className="flex items-start gap-2 rounded-[3px] bg-[#FEF2F2] px-4 py-3 text-sm text-[#9a3412]"
           >
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
             {error}
@@ -173,16 +173,16 @@ export default function AuthForm({ mode, googleConfigured, callbackUrl = "/" }: 
         </button>
       </form>
 
-      <p className="mt-4 flex items-center justify-center gap-2 text-xs text-[var(--dark)]/50">
+      <p className="mt-4 flex items-center justify-center gap-2 text-xs text-faint">
         <Lock className="h-3.5 w-3.5" aria-hidden="true" />
         Protected by reCAPTCHA v3 and Google OAuth
       </p>
 
-      <p className="mt-6 text-center text-sm text-[var(--dark)]/65">
+      <p className="mt-6 text-center text-sm text-muted">
         {isSignup ? "Already have an account?" : "Need an account?"}{" "}
         <Link
           href={isSignup ? "/auth/signin" : "/auth/signup"}
-          className="font-semibold text-[var(--primary)] hover:underline"
+          className="font-semibold text-brand-ink hover:underline"
         >
           {isSignup ? "Sign in" : "Create one"}
         </Link>

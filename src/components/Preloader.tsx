@@ -44,7 +44,7 @@ export default function Preloader() {
     return null;
   }
 
-  const rays = Array.from({ length: 9 }, (_, index) => index);
+  const bands = [0, 1, 2, 3];
 
   return (
     <div
@@ -54,62 +54,48 @@ export default function Preloader() {
       aria-live="polite"
       aria-label="Loading Elisha Solar"
     >
-      <div className="relative flex h-40 w-56 items-end justify-center">
-        {!reducedMotion && (
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 224 120"
-            className="absolute bottom-8 left-0 h-24 w-56"
-          >
-            {rays.map((ray) => {
-              const angle = -80 + ray * 20;
-              return (
-                <line
-                  key={ray}
-                  x1="112"
-                  y1="60"
-                  x2="112"
-                  y2="26"
-                  stroke="var(--primary)"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  transform={`rotate(${angle} 112 60)`}
-                  className="preloader-ray"
-                  style={{ animationDelay: `${120 + ray * 110}ms` }}
-                />
-              );
-            })}
-          </svg>
-        )}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 224 120"
-          className={`absolute bottom-8 left-0 h-24 w-56 ${reducedMotion ? "" : "preloader-sun"}`}
-        >
-          <circle cx="112" cy="60" r="24" fill="var(--primary)" />
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 200 96"
+        className={`h-24 w-48 ${reducedMotion ? "" : "preloader-sun"}`}
+      >
+        <path d="M60 68a40 40 0 0 1 80 0z" fill="var(--primary)" />
+        <line
+          x1="0"
+          y1="68"
+          x2="200"
+          y2="68"
+          stroke="var(--dark)"
+          strokeOpacity="0.22"
+          strokeWidth="1.5"
+        />
+        {bands.map((band) => (
           <line
-            x1="24"
-            y1="92"
-            x2="200"
-            y2="92"
-            stroke="var(--dark)"
-            strokeOpacity="0.18"
-            strokeWidth="3"
+            key={band}
+            x1={48 - band * 12}
+            y1={76 + band * 6}
+            x2={152 + band * 12}
+            y2={76 + band * 6}
+            stroke="var(--primary)"
+            strokeOpacity={0.55 - band * 0.1}
+            strokeWidth="2"
             strokeLinecap="round"
+            className={reducedMotion ? undefined : "preloader-ray"}
+            style={{ animationDelay: `${200 + band * 130}ms` }}
           />
-        </svg>
-      </div>
+        ))}
+      </svg>
 
-      <p className="mt-6 font-[Roboto] text-2xl font-bold tracking-tight text-[var(--dark)]">
+      <p className="tnum mt-6 font-[Roboto] text-2xl font-bold tracking-[-0.02em] text-ink">
         {reducedMotion ? `${progress} percent` : `${progress}%`}
       </p>
-      <p className="mt-1 text-sm text-[var(--dark)]/60">{site.tagline}</p>
+      <p className="mt-1 text-sm text-muted">{site.tagline}</p>
 
       {skippable && (
         <button
           type="button"
           onClick={() => setDone(true)}
-          className="mt-6 rounded-full border border-[var(--dark)]/15 px-5 py-2 text-sm font-semibold text-[var(--dark)] transition hover:border-[var(--primary)] hover:text-[var(--primary)]"
+          className="btn-ghost mt-6 !px-4 !py-2 text-[13px]"
         >
           Skip intro
         </button>

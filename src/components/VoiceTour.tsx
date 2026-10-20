@@ -186,7 +186,7 @@ export default function VoiceTour() {
         <span
           role="tooltip"
           id="voice-tour-tooltip"
-          className="pointer-events-none absolute left-full top-1/2 ml-3 -translate-y-1/2 whitespace-nowrap rounded-lg bg-[var(--dark)] px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
+          className="pointer-events-none absolute left-full top-1/2 ml-3 -translate-y-1/2 whitespace-nowrap rounded-[2px] bg-[var(--dark)] px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
         >
           {speaking ? "Click to mute the tour" : "Hear what this site is about"}
         </span>
@@ -196,7 +196,7 @@ export default function VoiceTour() {
           aria-label={label}
           aria-describedby="voice-tour-tooltip"
           aria-pressed={speaking}
-          className={`flex h-14 w-14 items-center justify-center rounded-full border border-[var(--primary)]/25 bg-white text-[var(--primary)] shadow-[0_12px_30px_-12px_rgba(26,42,54,0.55)] transition-transform hover:scale-105 ${
+          className={`flex h-14 w-14 items-center justify-center rounded-full border border-brand-ink/25 bg-white text-brand-ink shadow-[0_10px_24px_-14px_rgba(18,34,44,0.55)] transition-transform hover:scale-105 ${
             speaking ? "voice-ring-active" : ""
           }`}
         >

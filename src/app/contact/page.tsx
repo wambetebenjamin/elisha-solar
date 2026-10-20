@@ -27,28 +27,28 @@ export default function ContactPage() {
         <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr]">
           <div className="space-y-6">
             <div className="card-surface p-6">
-              <h2 className="font-[Roboto] text-lg font-bold text-[var(--dark)]">
+              <h2 className="font-[Roboto] text-lg font-bold text-ink">
                 Nairobi headquarters
               </h2>
-              <div className="mt-4 space-y-4 text-sm text-[var(--dark)]/70">
+              <div className="mt-4 space-y-4 text-sm text-muted">
                 <p className="flex items-start gap-3">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
                   {site.address}
                 </p>
                 <p className="flex items-start gap-3">
-                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
-                  <a href={`tel:${site.phone}`} className="font-semibold text-[var(--dark)] hover:text-[#1f8b4a]">
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
+                  <a href={`tel:${site.phone}`} className="font-semibold text-ink hover:text-brand-ink">
                     {site.phoneDisplay}
                   </a>
                 </p>
                 <p className="flex items-start gap-3">
-                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
-                  <a href={`mailto:${site.email}`} className="hover:text-[#1f8b4a]">
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
+                  <a href={`mailto:${site.email}`} className="hover:text-brand-ink">
                     {site.email}
                   </a>
                 </p>
                 <p className="flex items-start gap-3">
-                  <Clock className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
+                  <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
                   {site.hours}
                 </p>
               </div>
@@ -64,11 +64,11 @@ export default function ContactPage() {
             </div>
 
             <div className="card-surface overflow-hidden">
-              <div className="border-b border-[var(--dark)]/8 px-6 py-4">
-                <h2 className="font-[Roboto] text-lg font-bold text-[var(--dark)]">
+              <div className="border-b border-line px-6 py-4">
+                <h2 className="font-[Roboto] text-lg font-bold text-ink">
                   Counties we cover
                 </h2>
-                <p className="mt-1 text-xs text-[var(--dark)]/55">
+                <p className="mt-1 text-xs text-muted">
                   All 47 counties, with permanent crews in five regions.
                 </p>
               </div>
@@ -79,12 +79,12 @@ export default function ContactPage() {
                 height={520}
                 className="h-auto w-full"
               />
-              <ul className="divide-y divide-[var(--dark)]/8">
+              <ul className="divide-y divide-line">
                 {coverageRegions.map((region) => (
                   <li key={region.region} className="px-6 py-4">
-                    <p className="text-sm font-bold text-[var(--dark)]">{region.region}</p>
-                    <p className="mt-1 text-xs text-[var(--dark)]/60">{region.note}</p>
-                    <p className="mt-2 text-xs font-medium text-[var(--dark)]/50">
+                    <p className="text-sm font-bold text-ink">{region.region}</p>
+                    <p className="mt-1 text-xs text-muted">{region.note}</p>
+                    <p className="mt-2 text-xs font-medium text-faint">
                       {region.counties.join(", ")}
                     </p>
                   </li>
@@ -95,9 +95,9 @@ export default function ContactPage() {
 
           <div>
             <ContactForm />
-            <p className="mt-4 text-center text-xs text-[var(--dark)]/50">
+            <p className="mt-4 text-center text-xs text-faint">
               Looking for a priced quote instead?{" "}
-              <Link href="/quote" className="font-semibold text-[var(--primary)] hover:underline">
+              <Link href="/quote" className="font-semibold text-brand-ink hover:underline">
                 Use the quote form
               </Link>
               .
