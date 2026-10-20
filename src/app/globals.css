@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+/*
+  Template tokens carried over verbatim from the uploaded template
+  (css/style.css). Do not rename or re-value these.
+*/
+:root {
+    --primary: #32C36C;
+    --light: #F6F7F8;
+    --dark: #1A2A36;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-light: var(--light);
+  --color-dark: var(--dark);
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Roboto", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+  Fonts. The template loads Open Sans and Roboto from Google Fonts via
+  <link> tags in the layout head. No @font-face rules exist in the uploaded
+  template, so none are added or replaced here.
+*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--dark);
+  font-family: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-heading {
+  font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+}
+
+::selection {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Utility surfaces built on template tokens */
+.section-tint {
+  background-color: var(--light);
+}
+
+.text-brand {
+  color: var(--primary);
+}
+
+.bg-brand {
+  background-color: var(--primary);
+}
+
+.bg-ink {
+  background-color: var(--dark);
+}
+
+.ring-brand {
+  box-shadow: 0 0 0 1px rgba(50, 195, 108, 0.35);
+}
+
+.card-surface {
+  background: #ffffff;
+  border: 1px solid rgba(26, 42, 54, 0.08);
+  border-radius: 18px;
+}
+
+.btn-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 0.85rem 1.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.btn-brand:hover {
+  background: #2bb160;
+  box-shadow: 0 12px 28px -12px rgba(50, 195, 108, 0.85);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(26, 42, 54, 0.18);
+  color: var(--dark);
+  border-radius: 999px;
+  padding: 0.85rem 1.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: #ffffff;
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--primary);
+  color: #1f8b4a;
+}
+
+.prose-solar p {
+  margin-bottom: 1.1rem;
+  line-height: 1.85;
+  color: #33474f;
+}
+
+.prose-solar h2 {
+  margin-top: 2.25rem;
+  margin-bottom: 0.85rem;
+  font-size: 1.5rem;
+}
+
+.prose-solar ul {
+  margin: 0 0 1.4rem 1.1rem;
+  list-style: disc;
+}
+
+.prose-solar li {
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+  color: #33474f;
+}
+
+/* WhatsApp button entrance pulse */
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.wa-pulse {
+  animation: wa-pulse 2.6s ease-out 1.4s 3;
+}
+
+/* Voice tour speaking ring */
+@keyframes voice-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(50, 195, 108, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(50, 195, 108, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(50, 195, 108, 0);
+  }
+}
+
+.voice-ring-active {
+  animation: voice-ring 1.6s ease-out infinite;
+}
+
+/* Sun preloader rays */
+@keyframes ray-rise {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes sun-rise {
+  0% {
+    transform: translateY(26px);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes preloader-fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.preloader-ray {
+  transform-origin: bottom center;
+  animation: ray-rise 0.6s ease-out both;
+}
+
+.preloader-sun {
+  animation: sun-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.preloader-exit {
+  animation: preloader-fade 0.45s ease-in forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .preloader-ray,
+  .preloader-sun,
+  .wa-pulse,
+  .voice-ring-active {
+    animation: none !important;
+  }
+}
