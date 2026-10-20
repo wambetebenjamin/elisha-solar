@@ -123,7 +123,7 @@ export default async function SolutionDetailPage({ params }: PageProps) {
               </dl>
             </section>
 
-            <section className="mt-12 border-l-2 border-brand-ink bg-brand-soft p-6 sm:p-8">
+            <section className="mt-12 border border-line bg-brand-soft p-6 sm:p-8">
               <p className="eyebrow">
                 Case study example
               </p>

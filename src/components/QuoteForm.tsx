@@ -468,7 +468,7 @@ export default function QuoteForm() {
             {serverError && (
               <p
                 role="alert"
-                className="border-l-2 border-[#A32222] bg-[#FDF3F3] px-4 py-3 text-[13px] font-medium text-[#8A1C1C]"
+                className="border border-[#E7C3C3] bg-[#FDF3F3] px-4 py-3 text-[13px] font-medium text-[#8A1C1C]"
               >
                 {serverError}
               </p>

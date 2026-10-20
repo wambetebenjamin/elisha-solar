@@ -20,8 +20,7 @@ export default function ErrorPage({
   return (
     <section className="mx-auto flex min-h-[70vh] max-w-3xl flex-col items-center justify-center px-6 py-20 text-center">
       <SunMark className="h-10 w-10 text-brand-ink" />
-      <p className="mt-6 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-ink">
-        <span aria-hidden="true" className="h-px w-6 bg-brand-ink" />
+      <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-ink">
         Error 500
       </p>
       <h1 className="mt-3 font-[Roboto] text-[2.25rem] font-bold leading-tight text-ink sm:text-[3rem] sm:text-5xl">

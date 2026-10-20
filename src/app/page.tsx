@@ -128,7 +128,7 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 46vw"
               />
             </div>
-            <div className="absolute bottom-4 left-4 max-w-[15rem] border border-line border-l-2 border-l-brand-ink bg-white px-3 py-2">
+            <div className="absolute bottom-4 left-4 max-w-[15rem] border border-line bg-white px-3 py-2">
               <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-ink">
                 Live systems
               </p>
@@ -181,7 +181,7 @@ export default function HomePage() {
           <ol className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-5">
             {processSteps.map((step, index) => (
               <Reveal as="li" key={step.title} delay={index * 0.06}>
-                <div className="border-t-2 border-ink pt-4">
+                <div className="border-t border-line pt-4">
                   <span className="tnum font-[Roboto] text-[13px] font-bold tracking-[0.1em] text-brand-ink">
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -218,7 +218,7 @@ export default function HomePage() {
               </Reveal>
             );
           })}
-          <div className="flex flex-col justify-between border-t-2 border-brand-ink bg-brand-soft p-6">
+          <div className="flex flex-col justify-between bg-brand-soft p-6">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-ink">
                 Free assessment
@@ -321,7 +321,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t-2 border-brand-ink bg-ink">
+      <section className="bg-ink">
         <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>

@@ -134,10 +134,11 @@ tokens plus a contrast safe set of working values.
   buttons, which the brief specifies at 50 percent radius, and the WhatsApp glyph.
 - **Surface.** Hairline borders in place of soft shadows and coloured glows. No glassmorphism, no
   `backdrop-blur`, no gradient overlays on cards. Photography is either full bleed or framed by a
-  single hairline.
-- **Hierarchy.** Section eyebrows are short uppercase labels preceded by a 22 pixel rule. Major
-  home sections carry a two digit index. Numbered process steps sit on a 2 pixel ink rule instead
-  of inside icon circles.
+  single hairline. There are no decorative rules, ticks or short bars anywhere: borders exist only
+  to separate real content.
+- **Hierarchy.** Section eyebrows are short uppercase labels with no ornament beside them. Major
+  home sections carry a two digit index. Numbered process steps use plain hairlines instead of
+  icon circles.
 - **Colour.** Bright template green `#32C36C` is now a graphic accent only, used for the loader
   and the brand mark. All green text uses `#0B6B3A`, and all primary buttons are that deep green
   with white text.
