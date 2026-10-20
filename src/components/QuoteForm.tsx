@@ -148,9 +148,7 @@ export default function QuoteForm() {
 
       if (!response.ok) {
         if (data.issues?.length) {
-          setErrors(
-            Object.fromEntries(data.issues.map((issue) => [issue.field, issue.message])),
-          );
+          setErrors(Object.fromEntries(data.issues.map((issue) => [issue.field, issue.message])));
         }
         setServerError(data.error ?? "We could not send your request. Please try again.");
         return;
@@ -190,35 +188,42 @@ export default function QuoteForm() {
     });
   };
 
+  const stepMotion = {
+    initial: { opacity: 0, x: 18 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -18 },
+    transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] as const },
+  };
+
   return (
-    <form onSubmit={submit} noValidate className="card-surface p-6 sm:p-8">
-      <ol className="mb-8 flex items-center gap-3" aria-label="Quote form progress">
+    <form onSubmit={submit} noValidate className="card-surface p-6 sm:p-9">
+      <ol className="mb-9 flex items-center gap-3" aria-label="Quote form progress">
         {steps.map((item, index) => {
           const state = step === item.id ? "current" : step > item.id ? "done" : "upcoming";
           return (
-            <li key={item.id} className="flex flex-1 items-center gap-3">
+            <li key={item.id} className="flex flex-1 items-center gap-2.5">
               <span
-                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition ${
+                className={`tnum flex h-7 w-7 shrink-0 items-center justify-center border text-[11px] font-bold ${
                   state === "current"
-                    ? "bg-[var(--primary)] text-white"
+                    ? "border-ink bg-ink text-white"
                     : state === "done"
-                      ? "bg-[var(--primary)]/15 text-[#1f8b4a]"
-                      : "bg-[var(--light)] text-[var(--dark)]/45"
+                      ? "border-brand-ink bg-white text-brand-ink"
+                      : "border-line bg-white text-faint"
                 }`}
                 aria-current={state === "current" ? "step" : undefined}
               >
-                {state === "done" ? <Check className="h-4 w-4" aria-hidden="true" /> : item.id}
+                {state === "done" ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : item.id}
               </span>
               <span
-                className={`hidden text-xs font-semibold sm:block ${
-                  state === "upcoming" ? "text-[var(--dark)]/45" : "text-[var(--dark)]"
+                className={`hidden text-[11px] font-semibold uppercase tracking-[0.1em] sm:block ${
+                  state === "upcoming" ? "text-faint" : "text-ink"
                 }`}
               >
                 {item.title}
               </span>
               {index < steps.length - 1 && (
                 <span
-                  className={`h-px flex-1 ${step > item.id ? "bg-[var(--primary)]/45" : "bg-[var(--dark)]/10"}`}
+                  className={`h-px flex-1 ${step > item.id ? "bg-brand-ink" : "bg-line"}`}
                   aria-hidden="true"
                 />
               )}
@@ -229,28 +234,19 @@ export default function QuoteForm() {
 
       <AnimatePresence mode="wait" initial={false}>
         {step === 1 && (
-          <motion.div
-            key="step-1"
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -24 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-6"
-          >
+          <motion.div key="step-1" {...stepMotion} className="space-y-7">
             <fieldset>
-              <legend className="text-sm font-semibold text-[var(--dark)]">
-                Property type
-              </legend>
-              <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              <legend className="field-label">Property type</legend>
+              <div className="mt-2 grid gap-2.5 sm:grid-cols-3">
                 {propertyTypes.map((option) => {
                   const selected = form.propertyType === option.value;
                   return (
                     <label
                       key={option.value}
-                      className={`cursor-pointer rounded-xl border p-4 transition ${
+                      className={`cursor-pointer border p-4 transition-colors ${
                         selected
-                          ? "border-[var(--primary)] bg-[var(--primary)]/6 ring-brand"
-                          : "border-[var(--dark)]/12 hover:border-[var(--primary)]/50"
+                          ? "border-brand-ink bg-brand-soft"
+                          : "border-line bg-white hover:border-ink/40"
                       }`}
                     >
                       <input
@@ -261,10 +257,8 @@ export default function QuoteForm() {
                         onChange={() => update("propertyType", option.value)}
                         className="sr-only"
                       />
-                      <span className="block text-sm font-bold text-[var(--dark)]">
-                        {option.label}
-                      </span>
-                      <span className="mt-1 block text-xs text-[var(--dark)]/60">
+                      <span className="block text-sm font-bold text-ink">{option.label}</span>
+                      <span className="mt-1 block text-xs leading-snug text-muted">
                         {option.hint}
                       </span>
                     </label>
@@ -275,39 +269,35 @@ export default function QuoteForm() {
             </fieldset>
 
             <div>
-              <label htmlFor="bill" className="text-sm font-semibold text-[var(--dark)]">
+              <label htmlFor="bill" className="field-label">
                 Average monthly electricity bill
               </label>
               <select
                 id="bill"
                 value={form.monthlyBill}
                 onChange={(event) => update("monthlyBill", Number(event.target.value))}
-                className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm text-[var(--dark)] focus:border-[var(--primary)] focus:outline-none"
+                className="field"
               >
                 {billBands.map((band) => (
-                  <option key={band.label} value={band.value}>
+                  <option key={band.value} value={band.value}>
                     {band.label}
                   </option>
                 ))}
               </select>
-              <p className="mt-2 text-xs text-[var(--dark)]/55">
-                We use the midpoint of your band to size the first draft, then refine it after
-                the assessment. Currently {formatKes(form.monthlyBill)}.
-              </p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label htmlFor="county" className="text-sm font-semibold text-[var(--dark)]">
+                <label htmlFor="county" className="field-label">
                   County
                 </label>
                 <select
                   id="county"
                   value={form.county}
                   onChange={(event) => update("county", event.target.value)}
-                  className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm text-[var(--dark)] focus:border-[var(--primary)] focus:outline-none"
+                  className="field"
                 >
-                  <option value="">Select a county</option>
+                  <option value="">Select your county</option>
                   {counties.map((county) => (
                     <option key={county} value={county}>
                       {county}
@@ -317,16 +307,16 @@ export default function QuoteForm() {
                 {errors.county && <FieldError message={errors.county} />}
               </div>
               <div>
-                <label htmlFor="size" className="text-sm font-semibold text-[var(--dark)]">
-                  Rooms or facility size
+                <label htmlFor="facilitySize" className="field-label">
+                  Number of rooms or facility size
                 </label>
                 <input
-                  id="size"
+                  id="facilitySize"
                   type="text"
+                  placeholder="For example 4 bedrooms, or 800 square metres"
                   value={form.facilitySize}
                   onChange={(event) => update("facilitySize", event.target.value)}
-                  placeholder="For example 4 bedrooms, or 600 square metres"
-                  className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm text-[var(--dark)] placeholder:text-[var(--dark)]/35 focus:border-[var(--primary)] focus:outline-none"
+                  className="field"
                 />
                 {errors.facilitySize && <FieldError message={errors.facilitySize} />}
               </div>
@@ -335,29 +325,17 @@ export default function QuoteForm() {
         )}
 
         {step === 2 && (
-          <motion.div
-            key="step-2"
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -24 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-6"
-          >
+          <motion.div key="step-2" {...stepMotion} className="space-y-7">
             <fieldset>
-              <legend className="text-sm font-semibold text-[var(--dark)]">
-                Preferred contact method
-              </legend>
-              <div className="mt-3 flex flex-wrap gap-3">
+              <legend className="field-label">Preferred contact method</legend>
+              <div className="mt-2 flex flex-wrap gap-2">
                 {contactMethods.map((method) => {
                   const selected = form.contactMethod === method.value;
                   return (
                     <label
                       key={method.value}
-                      className={`cursor-pointer rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                        selected
-                          ? "border-[var(--primary)] bg-[var(--primary)]/10 text-[#1f8b4a]"
-                          : "border-[var(--dark)]/12 text-[var(--dark)]/65 hover:border-[var(--primary)]/50"
-                      }`}
+                      data-active={selected}
+                      className="chip cursor-pointer px-3.5 py-2 text-[13px]"
                     >
                       <input
                         type="radio"
@@ -377,7 +355,7 @@ export default function QuoteForm() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label htmlFor="name" className="text-sm font-semibold text-[var(--dark)]">
+                <label htmlFor="name" className="field-label">
                   Full name
                 </label>
                 <input
@@ -386,12 +364,12 @@ export default function QuoteForm() {
                   autoComplete="name"
                   value={form.name}
                   onChange={(event) => update("name", event.target.value)}
-                  className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm focus:border-[var(--primary)] focus:outline-none"
+                  className="field"
                 />
                 {errors.name && <FieldError message={errors.name} />}
               </div>
               <div>
-                <label htmlFor="phone" className="text-sm font-semibold text-[var(--dark)]">
+                <label htmlFor="phone" className="field-label">
                   Phone number
                 </label>
                 <input
@@ -402,14 +380,14 @@ export default function QuoteForm() {
                   placeholder="0712 345 678"
                   value={form.phone}
                   onChange={(event) => update("phone", event.target.value)}
-                  className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm placeholder:text-[var(--dark)]/35 focus:border-[var(--primary)] focus:outline-none"
+                  className="field"
                 />
                 {errors.phone && <FieldError message={errors.phone} />}
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="text-sm font-semibold text-[var(--dark)]">
+              <label htmlFor="email" className="field-label">
                 Email address
               </label>
               <input
@@ -418,14 +396,15 @@ export default function QuoteForm() {
                 autoComplete="email"
                 value={form.email}
                 onChange={(event) => update("email", event.target.value)}
-                className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm focus:border-[var(--primary)] focus:outline-none"
+                className="field"
               />
               {errors.email && <FieldError message={errors.email} />}
             </div>
 
             <div>
-              <label htmlFor="notes" className="text-sm font-semibold text-[var(--dark)]">
-                Anything we should know? <span className="font-normal text-[var(--dark)]/50">(optional)</span>
+              <label htmlFor="notes" className="field-label">
+                Anything we should know?{" "}
+                <span className="font-normal text-faint">(optional)</span>
               </label>
               <textarea
                 id="notes"
@@ -433,23 +412,16 @@ export default function QuoteForm() {
                 value={form.notes}
                 onChange={(event) => update("notes", event.target.value)}
                 placeholder="Roof type, backup needs, best time to call"
-                className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm placeholder:text-[var(--dark)]/35 focus:border-[var(--primary)] focus:outline-none"
+                className="field"
               />
             </div>
           </motion.div>
         )}
 
         {step === 3 && (
-          <motion.div
-            key="step-3"
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -24 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-6"
-          >
-            <div className="rounded-xl border border-[var(--dark)]/10 bg-[var(--light)] p-5">
-              <h3 className="font-[Roboto] text-base font-bold text-[var(--dark)]">
+          <motion.div key="step-3" {...stepMotion} className="space-y-7">
+            <div className="border border-line bg-light p-5">
+              <h3 className="font-[Roboto] text-[0.9375rem] font-bold text-ink">
                 Please check your request
               </h3>
               <dl className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -464,17 +436,17 @@ export default function QuoteForm() {
               </dl>
             </div>
 
-            <label className="flex items-start gap-3 text-xs leading-relaxed text-[var(--dark)]/70">
+            <label className="flex items-start gap-3 text-[13px] leading-[1.65] text-muted">
               <input
                 type="checkbox"
                 checked={form.consent}
                 onChange={(event) => update("consent", event.target.checked)}
-                className="mt-0.5 h-4 w-4 rounded border-[var(--dark)]/25 accent-[var(--primary)]"
+                className="mt-0.5 h-4 w-4 border-line accent-[var(--brand-ink)]"
               />
               <span>
-                I agree that Elisha Solar may contact me about this request and store these
-                details under the{" "}
-                <Link href="/legal/privacy-policy" className="font-semibold text-[var(--primary)]">
+                I agree that Elisha Solar may contact me about this request and store these details
+                under the{" "}
+                <Link href="/legal/privacy-policy" className="font-semibold text-brand-ink underline underline-offset-2">
                   privacy policy
                 </Link>
                 .
@@ -482,19 +454,22 @@ export default function QuoteForm() {
             </label>
             {errors.consent && <FieldError message={errors.consent} />}
 
-            <div className="flex items-start gap-3 rounded-xl border border-[var(--dark)]/10 p-4 text-xs text-[var(--dark)]/60">
-              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
+            <div className="flex items-start gap-3 border-y border-line py-3 text-[12px] leading-[1.6] text-muted">
+              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
               <p>
                 This form is protected by reCAPTCHA v3
-                {recaptchaEnabled ? "" : " (add your site key to activate it)"}. Scores below
-                0.5 are asked to complete a visible check.
+                {recaptchaEnabled ? "" : " (add your site key to activate it)"}. Scores below 0.5
+                are asked to complete a visible check.
               </p>
             </div>
 
             <RecaptchaField challenged={challenged} onToken={handleV2Token} />
 
             {serverError && (
-              <p role="alert" className="rounded-xl bg-[#FEF2F2] px-4 py-3 text-sm text-[#9a3412]">
+              <p
+                role="alert"
+                className="border-l-2 border-[#A32222] bg-[#FDF3F3] px-4 py-3 text-[13px] font-medium text-[#8A1C1C]"
+              >
                 {serverError}
               </p>
             )}
@@ -502,7 +477,7 @@ export default function QuoteForm() {
         )}
       </AnimatePresence>
 
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--dark)]/10 pt-6">
+      <div className="mt-9 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-6">
         <div>
           {step > 1 ? (
             <button type="button" onClick={goBack} className="btn-ghost !py-2.5 text-sm">
@@ -510,9 +485,7 @@ export default function QuoteForm() {
               Back
             </button>
           ) : (
-            <p className="text-xs text-[var(--dark)]/55">
-              Takes about two minutes. No payment needed.
-            </p>
+            <p className="text-[12px] text-muted">Takes about two minutes. No payment needed.</p>
           )}
         </div>
         <div className="flex items-center gap-3">
@@ -548,7 +521,7 @@ export default function QuoteForm() {
 
 function FieldError({ message }: { message: string }) {
   return (
-    <p role="alert" className="mt-2 text-xs font-medium text-[#9a3412]">
+    <p role="alert" className="field-error">
       {message}
     </p>
   );
@@ -557,10 +530,8 @@ function FieldError({ message }: { message: string }) {
 function Summary({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-[11px] font-semibold uppercase tracking-wide text-[var(--dark)]/50">
-        {label}
-      </dt>
-      <dd className="mt-0.5 text-sm font-semibold capitalize text-[var(--dark)]">{value}</dd>
+      <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-faint">{label}</dt>
+      <dd className="mt-0.5 text-sm font-semibold capitalize text-ink">{value}</dd>
     </div>
   );
 }

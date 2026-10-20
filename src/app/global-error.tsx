@@ -13,9 +13,9 @@ export default function GlobalError({
     <html lang="en-KE">
       <body
         style={{
-          fontFamily: "Open Sans, Arial, sans-serif",
+          fontFamily: '"Open Sans", Arial, sans-serif',
           background: "#ffffff",
-          color: "#1A2A36",
+          color: "#12222C",
           margin: 0,
         }}
       >
@@ -30,34 +30,42 @@ export default function GlobalError({
             textAlign: "center",
           }}
         >
+          <svg viewBox="0 0 32 32" width="40" height="40" fill="none" aria-hidden="true">
+            <circle cx="16" cy="15" r="7.5" fill="#0B6B3A" />
+            <path d="M2.5 24.5h27" stroke="#0B6B3A" strokeWidth="2.2" strokeLinecap="round" />
+          </svg>
           <p
             style={{
-              fontSize: 12,
-              letterSpacing: 3,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 12,
+              fontSize: 11,
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#32C36C",
+              color: "#0B6B3A",
               fontWeight: 700,
-              margin: 0,
+              margin: "24px 0 0",
             }}
           >
+            <span aria-hidden="true" style={{ width: 24, height: 1, background: "#0B6B3A" }} />
             Error 500
           </p>
-          <h1 style={{ fontSize: 34, margin: "12px 0 0", lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: 32, margin: "12px 0 0", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
             Something went dark on our side.
           </h1>
-          <p style={{ maxWidth: 480, fontSize: 14, lineHeight: 1.7, color: "#536B76" }}>
+          <p style={{ maxWidth: 480, fontSize: 15, lineHeight: 1.7, color: "#46595F" }}>
             The application could not start. Try again, or contact us on WhatsApp and we will
             finish what you were doing.
           </p>
-          <div style={{ display: "flex", gap: 12, marginTop: 24, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 12, marginTop: 24, flexWrap: "wrap", justifyContent: "center" }}>
             <button
               type="button"
               onClick={reset}
               style={{
-                background: "#32C36C",
+                background: "#0B6B3A",
                 color: "#ffffff",
-                border: "none",
-                borderRadius: 999,
+                border: "1px solid #0B6B3A",
+                borderRadius: 3,
                 padding: "14px 26px",
                 fontSize: 15,
                 fontWeight: 600,
@@ -69,12 +77,12 @@ export default function GlobalError({
             <a
               href={whatsappLink}
               style={{
-                border: "1px solid rgba(26,42,54,0.2)",
-                borderRadius: 999,
+                border: "1px solid rgba(18,34,44,0.3)",
+                borderRadius: 3,
                 padding: "14px 26px",
                 fontSize: 15,
                 fontWeight: 600,
-                color: "#1A2A36",
+                color: "#12222C",
                 textDecoration: "none",
               }}
             >
@@ -82,7 +90,7 @@ export default function GlobalError({
             </a>
           </div>
           {error.digest && (
-            <p style={{ marginTop: 24, fontSize: 12, color: "#7C8B93" }}>
+            <p style={{ marginTop: 24, fontSize: 12, color: "#5C6E74" }}>
               Reference {error.digest}
             </p>
           )}

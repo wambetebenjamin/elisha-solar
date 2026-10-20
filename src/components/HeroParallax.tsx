@@ -11,9 +11,18 @@ type HeroParallaxProps = {
   src: string;
   alt: string;
   priority?: boolean;
+  sizes?: string;
+  /** Adds a dark scrim when text sits directly on top of the image. */
+  scrim?: boolean;
 };
 
-export default function HeroParallax({ src, alt, priority = false }: HeroParallaxProps) {
+export default function HeroParallax({
+  src,
+  alt,
+  priority = false,
+  sizes = "(max-width: 1024px) 100vw, 50vw",
+  scrim = false,
+}: HeroParallaxProps) {
   const imageWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,7 +33,7 @@ export default function HeroParallax({ src, alt, priority = false }: HeroParalla
 
     const context = gsap.context(() => {
       gsap.to(element, {
-        yPercent: 12,
+        yPercent: 8,
         ease: "none",
         scrollTrigger: {
           trigger: element,
@@ -40,17 +49,10 @@ export default function HeroParallax({ src, alt, priority = false }: HeroParalla
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <div ref={imageWrapRef} className="absolute inset-0 -top-[12%] h-[124%]">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          priority={priority}
-          sizes="100vw"
-          className="object-cover"
-        />
+      <div ref={imageWrapRef} className="absolute inset-x-0 -top-[10%] h-[120%]">
+        <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-[var(--dark)]/85 via-[var(--dark)]/60 to-[var(--dark)]/20" />
+      {scrim && <div className="absolute inset-0 bg-ink/70" />}
     </div>
   );
 }

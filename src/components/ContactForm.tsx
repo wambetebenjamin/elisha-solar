@@ -113,13 +113,11 @@ export default function ContactForm() {
   if (sent) {
     return (
       <div className="card-surface p-8 text-center">
-        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--primary)]/12">
-          <Check className="h-7 w-7 text-[var(--primary)]" aria-hidden="true" />
-        </span>
-        <h2 className="mt-4 font-[Roboto] text-xl font-bold text-[var(--dark)]">
+        <Check className="mx-auto h-8 w-8 text-brand-ink" aria-hidden="true" />
+        <h2 className="mt-4 font-[Roboto] text-xl font-bold text-ink">
           Message received
         </h2>
-        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-[var(--dark)]/70">
+        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted">
           Thank you for reaching out. Our team replies within one working day. If it is urgent,
           message us on WhatsApp and we will pick it up sooner.
         </p>
@@ -138,7 +136,7 @@ export default function ContactForm() {
     <form onSubmit={submit} noValidate className="card-surface p-6 sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="contact-name" className="text-sm font-semibold text-[var(--dark)]">
+          <label htmlFor="contact-name" className="field-label">
             Full name
           </label>
           <input
@@ -147,12 +145,12 @@ export default function ContactForm() {
             autoComplete="name"
             value={form.name}
             onChange={(event) => update("name", event.target.value)}
-            className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm focus:border-[var(--primary)] focus:outline-none"
+            className="field mt-2"
           />
           {errors.name && <FieldError message={errors.name} />}
         </div>
         <div>
-          <label htmlFor="contact-phone" className="text-sm font-semibold text-[var(--dark)]">
+          <label htmlFor="contact-phone" className="field-label">
             Phone number
           </label>
           <input
@@ -162,14 +160,14 @@ export default function ContactForm() {
             placeholder="0712 345 678"
             value={form.phone}
             onChange={(event) => update("phone", event.target.value)}
-            className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm placeholder:text-[var(--dark)]/35 focus:border-[var(--primary)] focus:outline-none"
+            className="field mt-2"
           />
           {errors.phone && <FieldError message={errors.phone} />}
         </div>
       </div>
 
       <div className="mt-4">
-        <label htmlFor="contact-email" className="text-sm font-semibold text-[var(--dark)]">
+        <label htmlFor="contact-email" className="field-label">
           Email address
         </label>
         <input
@@ -178,20 +176,20 @@ export default function ContactForm() {
           autoComplete="email"
           value={form.email}
           onChange={(event) => update("email", event.target.value)}
-          className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm focus:border-[var(--primary)] focus:outline-none"
+          className="field mt-2"
         />
         {errors.email && <FieldError message={errors.email} />}
       </div>
 
       <div className="mt-4">
-        <label htmlFor="contact-topic" className="text-sm font-semibold text-[var(--dark)]">
+        <label htmlFor="contact-topic" className="field-label">
           What is this about?
         </label>
         <select
           id="contact-topic"
           value={form.topic}
           onChange={(event) => update("topic", event.target.value as FormState["topic"])}
-          className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm focus:border-[var(--primary)] focus:outline-none"
+          className="field mt-2"
         >
           {topics.map((topic) => (
             <option key={topic.value} value={topic.value}>
@@ -202,7 +200,7 @@ export default function ContactForm() {
       </div>
 
       <div className="mt-4">
-        <label htmlFor="contact-message" className="text-sm font-semibold text-[var(--dark)]">
+        <label htmlFor="contact-message" className="field-label">
           Message
         </label>
         <textarea
@@ -211,21 +209,21 @@ export default function ContactForm() {
           value={form.message}
           onChange={(event) => update("message", event.target.value)}
           placeholder="Tell us about your property, your bill and what you would like to achieve."
-          className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-3 text-sm placeholder:text-[var(--dark)]/35 focus:border-[var(--primary)] focus:outline-none"
+          className="field mt-2"
         />
         {errors.message && <FieldError message={errors.message} />}
       </div>
 
-      <label className="mt-5 flex items-start gap-3 text-xs leading-relaxed text-[var(--dark)]/70">
+      <label className="mt-5 flex items-start gap-3 text-[13px] leading-[1.65] text-muted">
         <input
           type="checkbox"
           checked={form.consent}
           onChange={(event) => update("consent", event.target.checked)}
-          className="mt-0.5 h-4 w-4 rounded border-[var(--dark)]/25 accent-[var(--primary)]"
+          className="mt-0.5 h-4 w-4 border-line accent-[var(--brand-ink)]"
         />
         <span>
           I agree that Elisha Solar may store and use these details to respond to me, under the{" "}
-          <Link href="/legal/privacy-policy" className="font-semibold text-[var(--primary)]">
+          <Link href="/legal/privacy-policy" className="font-semibold text-brand-ink">
             privacy policy
           </Link>
           .
@@ -236,13 +234,13 @@ export default function ContactForm() {
       <RecaptchaField challenged={challenged} onToken={handleV2Token} />
 
       {serverError && (
-        <p role="alert" className="mt-4 rounded-xl bg-[#FEF2F2] px-4 py-3 text-sm text-[#9a3412]">
+        <p role="alert" className="mt-4 border-l-2 border-[#A32222] bg-[#FDF3F3] px-4 py-3 text-[13px] font-medium text-[#8A1C1C]">
           {serverError}
         </p>
       )}
 
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-xs text-[var(--dark)]/50">
+        <p className="text-xs text-faint">
           Protected by reCAPTCHA v3
           {recaptchaEnabled ? "" : " (site key not set in this environment)"}.
         </p>
@@ -270,7 +268,7 @@ export default function ContactForm() {
 
 function FieldError({ message }: { message: string }) {
   return (
-    <p role="alert" className="mt-2 text-xs font-medium text-[#9a3412]">
+    <p role="alert" className="mt-2 text-xs font-medium text-[#8A1C1C]">
       {message}
     </p>
   );

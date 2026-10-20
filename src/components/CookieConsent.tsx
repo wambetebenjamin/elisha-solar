@@ -123,27 +123,25 @@ export default function CookieConsent() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 90, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 bottom-0 z-[9997] border-t border-[var(--dark)]/10 bg-white shadow-[0_-16px_40px_-30px_rgba(26,42,54,0.6)]"
+            className="fixed inset-x-0 bottom-0 z-[9997] border-t border-line bg-white shadow-[0_-16px_40px_-30px_rgba(26,42,54,0.6)]"
             role="region"
             aria-label="Cookie consent"
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-5 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--primary)]/12">
-                  <Cookie className="h-5 w-5 text-[var(--primary)]" aria-hidden="true" />
-                </span>
+                <Cookie className="mt-1 h-5 w-5 shrink-0 text-brand-ink" aria-hidden="true" />
                 <div>
-                  <p className="text-sm font-semibold text-[var(--dark)]">
+                  <p className="text-sm font-semibold text-ink">
                     We use cookies to keep this site working and to understand how it is used.
                   </p>
-                  <p className="mt-1 text-xs leading-relaxed text-[var(--dark)]/65">
+                  <p className="mt-1 text-xs leading-relaxed text-muted">
                     Under the Kenya Data Protection Act 2019 you can choose what we store.
                     Necessary storage is always on. Read our{" "}
-                    <Link href="/legal/cookie-policy" className="font-semibold text-[var(--primary)] underline-offset-2 hover:underline">
+                    <Link href="/legal/cookie-policy" className="font-semibold text-brand-ink underline-offset-2 hover:underline">
                       cookie policy
                     </Link>{" "}
                     and{" "}
-                    <Link href="/legal/privacy-policy" className="font-semibold text-[var(--primary)] underline-offset-2 hover:underline">
+                    <Link href="/legal/privacy-policy" className="font-semibold text-brand-ink underline-offset-2 hover:underline">
                       privacy policy
                     </Link>
                     .
@@ -151,17 +149,21 @@ export default function CookieConsent() {
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-3 lg:shrink-0">
-                <button type="button" onClick={rejectOptional} className="btn-ghost !py-2.5 text-sm">
+                <button
+                  type="button"
+                  onClick={rejectOptional}
+                  className="text-[13px] font-semibold text-muted underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-ink"
+                >
                   Reject optional
                 </button>
                 <button
                   type="button"
                   onClick={() => setModalOpen(true)}
-                  className="btn-ghost !py-2.5 text-sm"
+                  className="btn-ghost !py-2.5 text-[13px]"
                 >
                   Manage preferences
                 </button>
-                <button type="button" onClick={acceptAll} className="btn-brand !py-2.5 text-sm">
+                <button type="button" onClick={acceptAll} className="btn-brand !py-2.5 text-[13px]">
                   Accept all
                 </button>
               </div>
@@ -176,7 +178,7 @@ export default function CookieConsent() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex items-end justify-center bg-[var(--dark)]/45 p-4 sm:items-center"
+            className="fixed inset-0 z-[9999] flex items-end justify-center bg-ink/60 p-4 sm:items-center"
             role="dialog"
             aria-modal="true"
             aria-labelledby="cookie-pref-title"
@@ -186,17 +188,17 @@ export default function CookieConsent() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 40, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl"
+              className="w-full max-w-2xl overflow-hidden border border-line bg-white shadow-[0_24px_60px_-32px_rgba(18,34,44,0.55)]"
             >
-              <div className="flex items-start justify-between border-b border-[var(--dark)]/10 px-6 py-5">
+              <div className="flex items-start justify-between border-b border-line px-6 py-5">
                 <div>
                   <h2
                     id="cookie-pref-title"
-                    className="font-[Roboto] text-lg font-bold text-[var(--dark)]"
+                    className="font-[Roboto] text-lg font-bold text-ink"
                   >
                     Cookie preferences
                   </h2>
-                  <p className="mt-1 text-xs text-[var(--dark)]/60">
+                  <p className="mt-1 text-xs text-muted">
                     Choose what Elisha Solar may store on your device. You can change this at
                     any time.
                   </p>
@@ -208,22 +210,22 @@ export default function CookieConsent() {
                     setBannerOpen(true);
                   }}
                   aria-label="Close cookie preferences"
-                  className="rounded-full p-2 text-[var(--dark)]/60 hover:bg-[var(--light)]"
+                  className="border border-line p-2 text-muted hover:border-ink/40 hover:text-ink"
                 >
                   <X className="h-5 w-5" aria-hidden="true" />
                 </button>
               </div>
 
               <div className="space-y-4 px-6 py-5">
-                <div className="rounded-xl border border-[var(--dark)]/10 p-4">
+                <div className="rounded-[3px] border border-line p-4">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-sm font-semibold text-[var(--dark)]">Necessary</p>
-                      <p className="mt-1 text-xs leading-relaxed text-[var(--dark)]/65">
+                      <p className="text-sm font-semibold text-ink">Necessary</p>
+                      <p className="mt-1 text-xs leading-relaxed text-muted">
                         Required for security, forms and remembering this choice. Always on.
                       </p>
                     </div>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-[var(--primary)]/12 px-3 py-1 text-[11px] font-semibold text-[#1f8b4a]">
+                    <span className="inline-flex items-center gap-1 border border-brand-ink/30 bg-brand-soft px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-ink">
                       <Check className="h-3 w-3" aria-hidden="true" />
                       Locked on
                     </span>
@@ -233,14 +235,14 @@ export default function CookieConsent() {
                 {optionalCategories.map((category) => (
                   <div
                     key={category.key}
-                    className="rounded-xl border border-[var(--dark)]/10 p-4"
+                    className="rounded-[3px] border border-line p-4"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-sm font-semibold text-[var(--dark)]">
+                        <p className="text-sm font-semibold text-ink">
                           {category.title}
                         </p>
-                        <p className="mt-1 text-xs leading-relaxed text-[var(--dark)]/65">
+                        <p className="mt-1 text-xs leading-relaxed text-muted">
                           {category.description}
                         </p>
                       </div>
@@ -256,8 +258,8 @@ export default function CookieConsent() {
                             }))
                           }
                         />
-                        <span className="h-6 w-11 rounded-full bg-[var(--dark)]/15 transition peer-checked:bg-[var(--primary)]" />
-                        <span className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow transition peer-checked:translate-x-5" />
+                        <span className="h-6 w-11 rounded-[2px] border border-line bg-[#D8DEE0] transition peer-checked:border-brand-ink peer-checked:bg-brand-ink" />
+                        <span className="absolute left-0.5 top-0.5 h-5 w-5 rounded-[1px] bg-white transition peer-checked:translate-x-5" />
                         <span className="sr-only">{category.title} cookies</span>
                       </label>
                     </div>
@@ -265,7 +267,7 @@ export default function CookieConsent() {
                 ))}
               </div>
 
-              <div className="flex flex-wrap justify-end gap-3 border-t border-[var(--dark)]/10 bg-[var(--light)] px-6 py-4">
+              <div className="flex flex-wrap justify-end gap-3 border-t border-line bg-light px-6 py-4">
                 <button type="button" onClick={rejectOptional} className="btn-ghost !py-2.5 text-sm">
                   Reject optional
                 </button>

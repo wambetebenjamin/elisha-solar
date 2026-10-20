@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, Cpu, MapPin, Sun } from "lucide-react";
+import { ArrowRight, Check, Cpu, MapPin, Zap } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 import { getSolution, solutions } from "@/data/solutions";
 import { whatsappLink } from "@/lib/site";
@@ -57,7 +57,7 @@ export default async function SolutionDetailPage({ params }: PageProps) {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr]">
           <div>
-            <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-[4px]">
               <Image
                 src={solution.image}
                 alt={solution.imageAlt}
@@ -69,12 +69,12 @@ export default async function SolutionDetailPage({ params }: PageProps) {
             </div>
 
             <div className="prose-solar mt-8 max-w-3xl">
-              <h2 className="font-[Roboto] text-2xl font-bold text-[var(--dark)]">
+              <h2 className="font-[Roboto] text-2xl font-bold text-ink">
                 What this system does
               </h2>
               <p>{solution.description}</p>
 
-              <h2 className="font-[Roboto] text-2xl font-bold text-[var(--dark)]">
+              <h2 className="font-[Roboto] text-2xl font-bold text-ink">
                 Who it suits
               </h2>
               <ul>
@@ -83,7 +83,7 @@ export default async function SolutionDetailPage({ params }: PageProps) {
                 ))}
               </ul>
 
-              <h2 className="font-[Roboto] text-2xl font-bold text-[var(--dark)]">
+              <h2 className="font-[Roboto] text-2xl font-bold text-ink">
                 Benefits you can measure
               </h2>
               <ul>
@@ -95,60 +95,58 @@ export default async function SolutionDetailPage({ params }: PageProps) {
 
             <section className="mt-12">
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--primary)]/12">
-                  <Cpu className="h-5 w-5 text-[var(--primary)]" aria-hidden="true" />
+                <span className="flex h-10 w-10 items-center justify-center border border-line bg-brand-soft">
+                  <Cpu className="h-5 w-5 text-brand-ink" aria-hidden="true" />
                 </span>
-                <h2 className="font-[Roboto] text-2xl font-bold text-[var(--dark)]">
+                <h2 className="font-[Roboto] text-2xl font-bold text-ink">
                   Technical specifications
                 </h2>
               </div>
-              <dl className="mt-6 overflow-hidden rounded-2xl border border-[var(--dark)]/10">
+              <dl className="mt-6 border-t border-line">
                 {[
                   { label: "Panel type", value: solution.specs.panels },
                   { label: "Battery type", value: solution.specs.battery },
                   { label: "Inverter", value: solution.specs.inverter },
                   { label: "Mounting", value: solution.specs.mounting },
                   { label: "Monitoring", value: solution.specs.monitoring },
-                ].map((row, index) => (
+                ].map((row) => (
                   <div
                     key={row.label}
-                    className={`grid gap-1 px-5 py-4 sm:grid-cols-[180px_1fr] ${
-                      index % 2 === 0 ? "bg-[var(--light)]" : "bg-white"
-                    }`}
+                    className="grid gap-1 border-b border-line py-4 sm:grid-cols-[180px_1fr] sm:gap-6"
                   >
-                    <dt className="text-xs font-bold uppercase tracking-wide text-[var(--dark)]/55">
+                    <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-faint">
                       {row.label}
                     </dt>
-                    <dd className="text-sm text-[var(--dark)]/80">{row.value}</dd>
+                    <dd className="text-sm text-ink">{row.value}</dd>
                   </div>
                 ))}
               </dl>
             </section>
 
-            <section className="mt-12 rounded-2xl border border-[var(--primary)]/25 bg-[var(--primary)]/5 p-6 sm:p-8">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1f8b4a]">
+            <section className="mt-12 border-l-2 border-brand-ink bg-brand-soft p-6 sm:p-8">
+              <p className="eyebrow">
                 Case study example
               </p>
-              <h2 className="mt-3 font-[Roboto] text-2xl font-bold text-[var(--dark)]">
+              <h2 className="mt-3 font-[Roboto] text-2xl font-bold text-ink">
                 {solution.caseStudy.title}
               </h2>
-              <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-[var(--dark)]/65">
+              <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-muted">
                 <span className="inline-flex items-center gap-1.5">
-                  <MapPin className="h-4 w-4 text-[var(--primary)]" aria-hidden="true" />
+                  <MapPin className="h-4 w-4 text-brand-ink" aria-hidden="true" />
                   {solution.caseStudy.location}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <Sun className="h-4 w-4 text-[var(--primary)]" aria-hidden="true" />
+                  <Zap className="h-4 w-4 text-brand-ink" aria-hidden="true" />
                   {solution.caseStudy.size}
                 </span>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-[var(--dark)]/75">
+              <p className="mt-4 text-sm leading-relaxed text-muted">
                 {solution.caseStudy.summary}
               </p>
-              <p className="mt-3 text-sm font-semibold leading-relaxed text-[var(--dark)]">
+              <p className="mt-3 text-sm font-semibold leading-relaxed text-ink">
                 {solution.caseStudy.result}
               </p>
-              <Link href="/projects" className="mt-5 inline-flex text-sm font-bold text-[#1f8b4a] hover:text-[var(--primary)]">
+              <Link href="/projects" className="mt-5 inline-flex text-sm font-bold text-brand-ink hover:text-brand-deep">
                 See the full project
                 <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
               </Link>
@@ -157,27 +155,27 @@ export default async function SolutionDetailPage({ params }: PageProps) {
 
           <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
             <div className="card-surface p-6">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--primary)]">
+              <p className="eyebrow">
                 At a glance
               </p>
               <dl className="mt-4 space-y-4 text-sm">
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-[var(--dark)]/50">
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-faint">
                     Typical size
                   </dt>
-                  <dd className="mt-0.5 font-bold text-[var(--dark)]">{solution.typicalSize}</dd>
+                  <dd className="mt-0.5 font-bold text-ink">{solution.typicalSize}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-[var(--dark)]/50">
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-faint">
                     Estimated cost
                   </dt>
-                  <dd className="mt-0.5 font-bold text-[var(--dark)]">{solution.costRange}</dd>
+                  <dd className="mt-0.5 font-bold text-ink">{solution.costRange}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-[var(--dark)]/50">
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-faint">
                     Installation time
                   </dt>
-                  <dd className="mt-0.5 font-bold text-[var(--dark)]">
+                  <dd className="mt-0.5 font-bold text-ink">
                     Two to four days for most homes
                   </dd>
                 </div>
@@ -197,10 +195,10 @@ export default async function SolutionDetailPage({ params }: PageProps) {
             </div>
 
             <div className="card-surface p-6">
-              <h2 className="font-[Roboto] text-sm font-bold uppercase tracking-wide text-[var(--dark)]">
+              <h2 className="font-[Roboto] text-sm font-bold uppercase tracking-wide text-ink">
                 Included as standard
               </h2>
-              <ul className="mt-3 space-y-2 text-sm text-[var(--dark)]/70">
+              <ul className="mt-3 space-y-2 text-sm text-muted">
                 {[
                   "Free site assessment and shading study",
                   "Written design and fixed price",
@@ -209,7 +207,7 @@ export default async function SolutionDetailPage({ params }: PageProps) {
                   "First year of monitoring support",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
                     {item}
                   </li>
                 ))}
@@ -217,7 +215,7 @@ export default async function SolutionDetailPage({ params }: PageProps) {
             </div>
 
             <div className="card-surface p-6">
-              <h2 className="font-[Roboto] text-sm font-bold uppercase tracking-wide text-[var(--dark)]">
+              <h2 className="font-[Roboto] text-sm font-bold uppercase tracking-wide text-ink">
                 Other solutions
               </h2>
               <ul className="mt-3 space-y-2 text-sm">
@@ -225,7 +223,7 @@ export default async function SolutionDetailPage({ params }: PageProps) {
                   <li key={item.slug}>
                     <Link
                       href={`/solutions/${item.slug}`}
-                      className="text-[var(--dark)]/70 hover:text-[#1f8b4a]"
+                      className="text-muted hover:text-brand-ink"
                     >
                       {item.title}
                     </Link>

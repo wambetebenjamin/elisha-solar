@@ -1,15 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Elisha Solar">
-  <rect width="64" height="64" rx="14" fill="#32C36C"/>
-  <circle cx="32" cy="30" r="9.5" fill="#FFFFFF"/>
-  <g stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round">
-    <line x1="32" y1="9" x2="32" y2="15"/>
-    <line x1="32" y1="45" x2="32" y2="48"/>
-    <line x1="11" y1="30" x2="17" y2="30"/>
-    <line x1="47" y1="30" x2="53" y2="30"/>
-    <line x1="17.2" y1="15.2" x2="21.4" y2="19.4"/>
-    <line x1="42.6" y1="40.6" x2="46.8" y2="44.8"/>
-    <line x1="46.8" y1="15.2" x2="42.6" y2="19.4"/>
-    <line x1="21.4" y1="40.6" x2="17.2" y2="44.8"/>
-  </g>
-  <line x1="16" y1="51" x2="48" y2="51" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" opacity="0.85"/>
+  <rect width="64" height="64" fill="#0B6B3A"/>
+  <circle cx="32" cy="29" r="12" fill="#FFFFFF"/>
+  <path d="M8 47.5h48" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M15 55h7M27 55h10M42 55h7" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" opacity="0.55"/>
 </svg>

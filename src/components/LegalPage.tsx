@@ -38,15 +38,15 @@ export default function LegalPage({
       <div className="mx-auto max-w-6xl px-6 py-14">
         <div className="grid gap-12 lg:grid-cols-[240px_1fr]">
           <nav aria-label="On this page" className="lg:sticky lg:top-28 lg:self-start">
-            <p className="text-xs font-bold uppercase tracking-wide text-[var(--dark)]/45">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-faint">
               On this page
             </p>
-            <ul className="mt-3 space-y-2 text-sm">
+            <ul className="mt-4 space-y-2.5 border-l border-line pl-4 text-sm">
               {sections.map((section) => (
                 <li key={section.id}>
                   <a
                     href={`#${section.id}`}
-                    className="text-[var(--dark)]/65 transition hover:text-[#1f8b4a]"
+                    className="text-muted transition hover:text-brand-ink"
                   >
                     {section.heading}
                   </a>
@@ -56,13 +56,13 @@ export default function LegalPage({
           </nav>
 
           <article className="prose-solar max-w-3xl">
-            <p className="not-prose mb-6 rounded-xl bg-[var(--light)] px-4 py-3 text-xs font-medium text-[var(--dark)]/60">
+            <p className="not-prose mb-8 border-y border-line py-3 text-[12px] font-medium text-muted">
               Last updated {updated}. Elisha Solar Limited, {site.address}.
             </p>
 
             {sections.map((section) => (
               <section key={section.id} id={section.id} className="scroll-mt-28">
-                <h2 className="font-[Roboto] text-xl font-bold text-[var(--dark)]">
+                <h2 className="mt-8 font-[Roboto] text-xl font-bold text-ink">
                   {section.heading}
                 </h2>
                 {section.paragraphs?.map((paragraph) => (
@@ -78,25 +78,25 @@ export default function LegalPage({
               </section>
             ))}
 
-            <p className="mt-10 text-sm text-[var(--dark)]/65">
+            <p className="mt-10 text-sm text-muted">
               Questions about this document? Email{" "}
-              <a href={`mailto:${site.email}`} className="font-semibold text-[var(--primary)]">
+              <a href={`mailto:${site.email}`} className="font-semibold text-brand-ink">
                 {site.email}
               </a>{" "}
               or call{" "}
-              <a href={`tel:${site.phone}`} className="font-semibold text-[var(--primary)]">
+              <a href={`tel:${site.phone}`} className="font-semibold text-brand-ink">
                 {site.phoneDisplay}
               </a>
               . You can also read our{" "}
-              <Link href="/legal/privacy-policy" className="font-semibold text-[var(--primary)]">
+              <Link href="/legal/privacy-policy" className="font-semibold text-brand-ink">
                 privacy policy
               </Link>
               ,{" "}
-              <Link href="/legal/terms" className="font-semibold text-[var(--primary)]">
+              <Link href="/legal/terms" className="font-semibold text-brand-ink">
                 terms of service
               </Link>{" "}
               and{" "}
-              <Link href="/legal/cookie-policy" className="font-semibold text-[var(--primary)]">
+              <Link href="/legal/cookie-policy" className="font-semibold text-brand-ink">
                 cookie policy
               </Link>
               .

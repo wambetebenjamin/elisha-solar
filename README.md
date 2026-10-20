@@ -122,12 +122,61 @@ shows equipment, rooftops and aerial installations, and keeps people out of fram
 in `public/images/` and update the `image` fields in `src/data/solutions.ts` and
 `src/data/projects.ts` when commissioned photography exists.
 
+## Design language
+
+The visual system is editorial rather than decorative, and it is built only from the template
+tokens plus a contrast safe set of working values.
+
+- **Type.** Roboto for headings at weight 700 with tight tracking, Open Sans for body text.
+  Headings no longer use weight 900, which was the heaviest contributor to the generic look.
+- **Shape.** Every radius is 2 to 4 pixels. There are no pill badges, no fully rounded cards and
+  no rotated or diamond shaped ornaments. The only remaining circles are the two floating action
+  buttons, which the brief specifies at 50 percent radius, and the WhatsApp glyph.
+- **Surface.** Hairline borders in place of soft shadows and coloured glows. No glassmorphism, no
+  `backdrop-blur`, no gradient overlays on cards. Photography is either full bleed or framed by a
+  single hairline.
+- **Hierarchy.** Section eyebrows are short uppercase labels preceded by a 22 pixel rule. Major
+  home sections carry a two digit index. Numbered process steps sit on a 2 pixel ink rule instead
+  of inside icon circles.
+- **Colour.** Bright template green `#32C36C` is now a graphic accent only, used for the loader
+  and the brand mark. All green text uses `#0B6B3A`, and all primary buttons are that deep green
+  with white text.
+
+### Contrast
+
+Text can no longer disappear into its background, because every pair in use is verified.
+
+| Token | Value | Used on | Ratio |
+| --- | --- | --- | --- |
+| `--ink` | `#12222C` | white, tint | 16.27:1, 15.17:1 |
+| `--muted` | `#46595F` | white, tint, brand wash | 7.36:1 or better |
+| `--faint` | `#5C6E74` | white, tint | 5.33:1, 4.97:1 |
+| `--brand-ink` | `#0B6B3A` | white, tint, brand wash | 6.61:1 or better |
+| `--on-dark-muted` | `#C3CFD3` | ink, template dark | 9.23:1 or better |
+| Mint link | `#9EE7BA` | ink, dark | 11.30:1 or better |
+
+Run `npm run check:contrast` to verify all 20 pairs. It exits non zero if any pair drops below
+WCAG AA.
+
+The old build used `#32C36C` for text on white, which is 2.29:1, and scores of `text-[...]/45` to
+`/70` opacity utilities that faded into the page. Both are gone. Placeholder text, form labels,
+disabled states and chart axes were raised to the same standard.
+
+### Text cannot be stranded invisible
+
+The reveal animation used to server render at `opacity: 0`. Anything that failed to hydrate, or
+any element the observer missed, stayed invisible. `src/components/Reveal.tsx` now renders children
+fully visible, and only applies the hidden state after the browser confirms JavaScript, an
+intersection observer and motion permission. A four second safety timer reveals anything the
+observer missed. No component in `src` sets `initial={{ opacity: 0 }}` on content any more, which
+is why the served HTML contains no `opacity:0` at all.
+
 ## Motion and accessibility
 
 Nine effects: Lenis smooth scroll, GSAP count up on the impact bar, animated recharts area draw,
 Framer Motion card lift on solution cards, GSAP hero parallax, staggered project card entrance,
 Framer Motion step transitions in the quote form, the WhatsApp entrance pulse and the preloader
-ray animation.
+sunrise animation.
 
 All motion respects `prefers-reduced-motion`, including the preloader, which falls back to plain
 percentage text. The voice tour never autoplays: it starts on the first scroll or click only.
@@ -141,13 +190,15 @@ npx next build
 npm audit --audit-level=high
 ```
 
-All four pass with zero TypeScript errors, a successful Turbopack production build of 36 routes,
-and `found 0 vulnerabilities`.
+All four pass with zero TypeScript errors, a successful Turbopack production build of 39 routes,
+and `found 0 vulnerabilities`. `npm run check:contrast` passes all 20 pairs, and a crawl of 28
+linked pages finds no broken links or images.
 
 ## Notes for the next developer
 
-- The site is green and white, built only from the template tokens. The footer is dark because the
-  template footer is dark; there is no dark theme anywhere else.
+- The site is green and white, built only from the template tokens. The template footer stays
+  dark, and the top contact strip and one closing call to action band use the same ink. Everything
+  else, including the home hero, is white or the template tint. There is no dark theme.
 - No em dashes appear in any rendered string, class name, or data file.
 - The savings calculator is deterministic and client side. The formula lives in
   `src/lib/savings.ts` with its assumptions documented at the top.

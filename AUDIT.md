@@ -225,5 +225,7 @@ testimonial.html
 | Types | `npx tsc --noEmit` | no errors |
 | Production build | `npx next build` | compiled successfully, 39 routes generated |
 | Security | `npm audit --audit-level=high` | 0 vulnerabilities |
-| Link and asset crawl | 30 pages crawled | 0 broken links, 0 missing images |
-| Banned character | `grep -rn "em dash"` over `src`, data, docs | 0 occurrences |
+| Link and asset crawl | 28 pages crawled | 0 broken links, 0 missing images |
+| Banned character | `grep` for em and en dashes over `src`, data, docs | 0 occurrences |
+| Contrast | `npm run check:contrast` | 20 of 20 pairs meet WCAG AA |
+| Hidden text | SSR HTML scan across all routes | 0 elements at `opacity: 0` |

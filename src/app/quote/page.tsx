@@ -26,10 +26,10 @@ export default function QuotePage() {
 
           <aside className="space-y-6">
             <div className="card-surface p-6">
-              <h2 className="font-[Roboto] text-base font-bold text-[var(--dark)]">
+              <h2 className="font-[Roboto] text-base font-bold text-ink">
                 What you get, at no cost
               </h2>
-              <ul className="mt-4 space-y-3 text-sm text-[var(--dark)]/70">
+              <ul className="mt-4 space-y-3 text-sm text-muted">
                 {[
                   "A site visit and roof measurement",
                   "Shading study across the day",
@@ -38,7 +38,7 @@ export default function QuotePage() {
                   "No obligation to proceed",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
                     {item}
                   </li>
                 ))}
@@ -46,22 +46,22 @@ export default function QuotePage() {
             </div>
 
             <div className="card-surface p-6">
-              <h2 className="font-[Roboto] text-base font-bold text-[var(--dark)]">
+              <h2 className="font-[Roboto] text-base font-bold text-ink">
                 Prefer to talk first?
               </h2>
-              <div className="mt-4 space-y-3 text-sm text-[var(--dark)]/70">
+              <div className="mt-4 space-y-3 text-sm text-muted">
                 <p className="flex items-start gap-3">
-                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
-                  <a href={`tel:${site.phone}`} className="font-semibold hover:text-[#1f8b4a]">
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
+                  <a href={`tel:${site.phone}`} className="font-semibold hover:text-brand-ink">
                     {site.phoneDisplay}
                   </a>
                 </p>
                 <p className="flex items-start gap-3">
-                  <Clock className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
+                  <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
                   {site.hours}
                 </p>
                 <p className="flex items-start gap-3">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
                   {site.address}
                 </p>
               </div>
@@ -75,11 +75,11 @@ export default function QuotePage() {
               </a>
             </div>
 
-            <div className="rounded-2xl bg-[var(--primary)]/8 p-6">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#1f8b4a]">
+            <div className="border border-line bg-brand-soft p-6">
+              <p className="eyebrow">
                 Data protection
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--dark)]/70">
+              <p className="mt-2 text-sm leading-relaxed text-muted">
                 We use your details only to respond to this request. We do not sell data, and you
                 can ask us to delete your record at any time under the Kenya Data Protection Act
                 2019.

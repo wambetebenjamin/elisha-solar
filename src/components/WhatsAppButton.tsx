@@ -22,7 +22,7 @@ export default function WhatsAppButton() {
         <span
           role="tooltip"
           id="whatsapp-tooltip"
-          className="pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 whitespace-nowrap rounded-lg bg-[var(--dark)] px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
+          className="pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 whitespace-nowrap rounded-[2px] bg-[var(--dark)] px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
         >
           Chat with us on WhatsApp
         </span>
@@ -32,7 +32,7 @@ export default function WhatsAppButton() {
           rel="noopener noreferrer"
           aria-label="Chat with us on WhatsApp"
           aria-describedby="whatsapp-tooltip"
-          className={`flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_30px_-10px_rgba(37,211,102,0.9)] transition-transform hover:scale-105 ${
+          className={`flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-[#07301A] shadow-[0_10px_24px_-12px_rgba(18,34,44,0.6)] transition-transform hover:scale-105 ${
             mounted ? "wa-pulse" : ""
           }`}
         >

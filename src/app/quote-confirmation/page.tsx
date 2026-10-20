@@ -13,7 +13,7 @@ export default function QuoteConfirmationPage() {
     <Suspense
       fallback={
         <div className="mx-auto max-w-3xl px-6 py-24 text-center">
-          <p className="text-sm text-[var(--dark)]/60">Loading your quote summary</p>
+          <p className="text-sm text-muted">Loading your quote summary</p>
         </div>
       }
     >

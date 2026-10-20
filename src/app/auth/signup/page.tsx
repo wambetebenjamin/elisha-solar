@@ -14,31 +14,31 @@ export default function SignUpPage() {
   return (
     <div className="mx-auto grid min-h-[70vh] max-w-6xl items-center gap-12 px-6 py-16 lg:grid-cols-2">
       <div>
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--primary)]">
+        <p className="eyebrow">
           Create an account
         </p>
-        <h1 className="mt-3 font-[Roboto] text-4xl font-black leading-tight text-[var(--dark)]">
+        <h1 className="mt-3 font-[Roboto] text-4xl font-bold leading-tight text-ink">
           Keep everything about your system in one place
         </h1>
-        <p className="mt-4 max-w-md text-sm leading-relaxed text-[var(--dark)]/70">
+        <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
           An account takes under a minute. It also lets us send you the commissioning report and
           warranty certificate digitally instead of on paper.
         </p>
-        <ul className="mt-7 space-y-3 text-sm text-[var(--dark)]/70">
+        <ul className="mt-7 space-y-3 text-sm text-muted">
           {[
             "Warranty certificates stored against your property",
             "Monitoring alerts sent to your account email",
             "Preferred contact method remembered for every request",
           ].map((item) => (
             <li key={item} className="flex items-start gap-2">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" aria-hidden="true" />
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" aria-hidden="true" />
               {item}
             </li>
           ))}
         </ul>
-        <p className="mt-8 text-xs text-[var(--dark)]/50">
+        <p className="mt-8 text-xs text-faint">
           Already registered?{" "}
-          <Link href="/auth/signin" className="font-semibold text-[var(--primary)] hover:underline">
+          <Link href="/auth/signin" className="font-semibold text-brand-ink hover:underline">
             Sign in instead
           </Link>
           .

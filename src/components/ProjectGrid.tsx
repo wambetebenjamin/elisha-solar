@@ -33,14 +33,14 @@ export default function ProjectGrid({ projects, counties, solutionTypes }: Proje
       <div className="card-surface flex flex-col gap-4 p-5 sm:flex-row sm:items-end sm:justify-between">
         <div className="grid flex-1 gap-4 sm:grid-cols-2">
           <div>
-            <label htmlFor="filter-type" className="text-xs font-bold uppercase tracking-wide text-[var(--dark)]/55">
+            <label htmlFor="filter-type" className="field-label !mb-0 !text-[11px] uppercase tracking-[0.12em] text-faint">
               Solution type
             </label>
             <select
               id="filter-type"
               value={type}
               onChange={(event) => setType(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-2.5 text-sm focus:border-[var(--primary)] focus:outline-none"
+              className="field !py-2.5"
             >
               <option value="all">All solutions</option>
               {solutionTypes.map((option) => (
@@ -51,14 +51,14 @@ export default function ProjectGrid({ projects, counties, solutionTypes }: Proje
             </select>
           </div>
           <div>
-            <label htmlFor="filter-county" className="text-xs font-bold uppercase tracking-wide text-[var(--dark)]/55">
+            <label htmlFor="filter-county" className="field-label !mb-0 !text-[11px] uppercase tracking-[0.12em] text-faint">
               County
             </label>
             <select
               id="filter-county"
               value={county}
               onChange={(event) => setCounty(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-[var(--dark)]/12 bg-white px-4 py-2.5 text-sm focus:border-[var(--primary)] focus:outline-none"
+              className="field !py-2.5"
             >
               <option value="all">All counties</option>
               {counties.map((option) => (
@@ -70,7 +70,7 @@ export default function ProjectGrid({ projects, counties, solutionTypes }: Proje
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--dark)]/55">
+          <span className="inline-flex items-center gap-2 text-xs font-semibold text-muted">
             <SlidersHorizontal className="h-4 w-4" aria-hidden="true" />
             {filtered.length} {filtered.length === 1 ? "project" : "projects"}
           </span>
@@ -81,7 +81,7 @@ export default function ProjectGrid({ projects, counties, solutionTypes }: Proje
                 setType("all");
                 setCounty("all");
               }}
-              className="rounded-full border border-[var(--dark)]/12 px-4 py-2 text-xs font-semibold text-[var(--dark)]/65 hover:border-[var(--primary)] hover:text-[#1f8b4a]"
+              className="chip text-[12px]"
             >
               Reset
             </button>
@@ -100,11 +100,11 @@ export default function ProjectGrid({ projects, counties, solutionTypes }: Proje
       </div>
 
       {filtered.length === 0 && (
-        <div className="mt-8 rounded-2xl border border-dashed border-[var(--dark)]/15 p-10 text-center">
-          <p className="font-[Roboto] text-lg font-bold text-[var(--dark)]">
+        <div className="mt-8 rounded-[4px] border border-dashed border-line p-10 text-center">
+          <p className="font-[Roboto] text-lg font-bold text-ink">
             No projects match that combination yet
           </p>
-          <p className="mt-2 text-sm text-[var(--dark)]/60">
+          <p className="mt-2 text-sm text-muted">
             We work in all 47 counties. Tell us where you are and we will share a nearby install.
           </p>
         </div>

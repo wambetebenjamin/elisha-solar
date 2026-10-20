@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       />
 
       <article className="mx-auto max-w-3xl px-6 py-14">
-        <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-[var(--dark)]/55">
+        <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-muted">
           <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span className="inline-flex items-center gap-1">
             <Clock className="h-3.5 w-3.5" aria-hidden="true" />
@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <span>Elisha Solar engineering team</span>
         </div>
 
-        <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl">
+        <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-[4px]">
           <Image
             src={post.image}
             alt={post.imageAlt}
@@ -81,7 +81,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           {post.body.map((section, index) => (
             <section key={index}>
               {section.heading && (
-                <h2 className="font-[Roboto] text-2xl font-bold text-[var(--dark)]">
+                <h2 className="font-[Roboto] text-2xl font-bold text-ink">
                   {section.heading}
                 </h2>
               )}
@@ -99,11 +99,11 @@ export default async function BlogPostPage({ params }: PageProps) {
           ))}
         </div>
 
-        <div className="mt-12 rounded-2xl bg-[var(--light)] p-6">
-          <p className="font-[Roboto] text-lg font-bold text-[var(--dark)]">
+        <div className="mt-12 rounded-[4px] bg-light p-6">
+          <p className="font-[Roboto] text-lg font-bold text-ink">
             Want this answered for your own property?
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-[var(--dark)]/70">
+          <p className="mt-2 text-sm leading-relaxed text-muted">
             A free site assessment gives you measured numbers instead of averages. We visit, read
             your bills and quote a fixed price.
           </p>
@@ -124,14 +124,14 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         <Link
           href="/blog"
-          className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-[var(--dark)]/65 hover:text-[var(--primary)]"
+          className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-muted hover:text-brand-deep"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Back to all insights
         </Link>
 
-        <div className="mt-12 border-t border-[var(--dark)]/10 pt-8">
-          <h2 className="font-[Roboto] text-sm font-bold uppercase tracking-wide text-[var(--dark)]">
+        <div className="mt-12 border-t border-line pt-8">
+          <h2 className="font-[Roboto] text-sm font-bold uppercase tracking-wide text-ink">
             Keep reading
           </h2>
           <ul className="mt-4 space-y-3">
@@ -139,11 +139,11 @@ export default async function BlogPostPage({ params }: PageProps) {
               <li key={item.slug}>
                 <Link
                   href={`/blog/${item.slug}`}
-                  className="font-semibold text-[var(--dark)]/75 hover:text-[#1f8b4a]"
+                  className="font-semibold text-muted hover:text-brand-ink"
                 >
                   {item.title}
                 </Link>
-                <p className="text-xs text-[var(--dark)]/50">{item.category}</p>
+                <p className="text-xs text-faint">{item.category}</p>
               </li>
             ))}
           </ul>

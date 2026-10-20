@@ -186,23 +186,21 @@ export default function QuoteConfirmation() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-16">
       <div className="text-center">
-        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[var(--primary)]/12">
-          <CheckCircle2 className="h-8 w-8 text-[var(--primary)]" aria-hidden="true" />
-        </span>
-        <h1 className="mt-5 font-[Roboto] text-3xl font-black text-[var(--dark)] sm:text-4xl">
+        <CheckCircle2 className="mx-auto h-9 w-9 text-brand-ink" aria-hidden="true" />
+        <h1 className="mt-5 font-[Roboto] text-[2rem] font-bold text-ink sm:text-[2.6rem]">
           Your quote request is in
         </h1>
-        <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[var(--dark)]/70">
+        <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted">
           {loading
             ? "Fetching your reference."
             : "Keep the reference below. We have emailed a copy to you and to our engineering desk."}
         </p>
-        <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-[var(--primary)]/30 bg-[var(--primary)]/6 px-5 py-2.5">
-          <FileText className="h-4 w-4 text-[var(--primary)]" aria-hidden="true" />
-          <span className="text-xs font-semibold uppercase tracking-wide text-[var(--dark)]/55">
+        <div className="mt-6 inline-flex items-center gap-3 border border-brand-ink/30 bg-brand-soft px-5 py-2.5">
+          <FileText className="h-4 w-4 text-brand-ink" aria-hidden="true" />
+          <span className="text-xs font-semibold uppercase tracking-wide text-muted">
             Reference
           </span>
-          <span className="font-[Roboto] text-base font-black tracking-wide text-[var(--dark)]">
+          <span className="tnum font-[Roboto] text-base font-bold tracking-[0.06em] text-ink">
             {reference || data?.reference || "pending"}
           </span>
         </div>
@@ -210,11 +208,11 @@ export default function QuoteConfirmation() {
 
       <div className="mt-12 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
         <div className="card-surface p-6 sm:p-8">
-          <h2 className="font-[Roboto] text-lg font-bold text-[var(--dark)]">
+          <h2 className="font-[Roboto] text-lg font-bold text-ink">
             Summary of your request
           </h2>
           {loading && !summary ? (
-            <p className="mt-4 flex items-center gap-2 text-sm text-[var(--dark)]/60">
+            <p className="mt-4 flex items-center gap-2 text-sm text-muted">
               <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
               Loading your details
             </p>
@@ -284,28 +282,28 @@ export default function QuoteConfirmation() {
         <div className="space-y-6">
           <div className="card-surface p-6">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--primary)]/12">
-                <Clock className="h-5 w-5 text-[var(--primary)]" aria-hidden="true" />
+              <span className="flex h-10 w-10 items-center justify-center border border-line bg-brand-soft">
+                <Clock className="h-5 w-5 text-brand-ink" aria-hidden="true" />
               </span>
-              <h2 className="font-[Roboto] text-base font-bold text-[var(--dark)]">
+              <h2 className="font-[Roboto] text-base font-bold text-ink">
                 What happens next
               </h2>
             </div>
-            <ol className="mt-4 space-y-4 text-sm text-[var(--dark)]/70">
+            <ol className="mt-4 space-y-4 text-sm text-muted">
               <li className="flex gap-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--light)] text-xs font-bold text-[var(--dark)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-line text-[11px] font-bold text-ink">
                   1
                 </span>
                 An engineer calls you within 24 hours to confirm details and book the assessment.
               </li>
               <li className="flex gap-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--light)] text-xs font-bold text-[var(--dark)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-line text-[11px] font-bold text-ink">
                   2
                 </span>
                 We visit, measure the roof, inspect your distribution board and confirm the design.
               </li>
               <li className="flex gap-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--light)] text-xs font-bold text-[var(--dark)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-line text-[11px] font-bold text-ink">
                   3
                 </span>
                 You receive a fixed written quote with a payment plan and an installation date.
@@ -313,9 +311,9 @@ export default function QuoteConfirmation() {
             </ol>
           </div>
 
-          <div className="rounded-2xl bg-[var(--dark)] p-6 text-white">
+          <div className="rounded-[4px] bg-dark p-6 text-white">
             <p className="font-[Roboto] text-base font-bold">Need it sooner?</p>
-            <p className="mt-2 text-sm leading-relaxed text-white/70">
+            <p className="mt-2 text-sm leading-relaxed text-[#DCE5E8]">
               Message the team on WhatsApp with your reference and we will pick it up in the
               queue.
             </p>
@@ -330,7 +328,7 @@ export default function QuoteConfirmation() {
             </a>
             <Link
               href="/solutions"
-              className="mt-3 block text-center text-xs font-semibold text-white/60 hover:text-white"
+              className="mt-3 block text-center text-xs font-semibold text-on-dark-muted hover:text-white"
             >
               Browse packages while you wait
             </Link>
@@ -352,11 +350,11 @@ function Row({
 }) {
   return (
     <div>
-      <dt className="text-[11px] font-semibold uppercase tracking-wide text-[var(--dark)]/50">
+      <dt className="text-[11px] font-semibold uppercase tracking-wide text-faint">
         {label}
       </dt>
       <dd
-        className={`mt-0.5 text-sm font-semibold text-[var(--dark)] ${capitalize ? "capitalize" : ""}`}
+        className={`mt-0.5 text-sm font-semibold text-ink ${capitalize ? "capitalize" : ""}`}
       >
         {value && value.length > 0 ? value : "Not provided"}
       </dd>
