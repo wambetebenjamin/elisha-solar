@@ -110,7 +110,7 @@ export default function SavingsCalculator() {
             ))}
           </dl>
 
-          <p className="mt-5 border-l-2 border-brand-ink pl-3 text-[12px] leading-[1.6] text-muted">
+          <p className="mt-5 text-[12px] leading-[1.6] text-muted">
             Ten year saving of {formatKes(result.tenYearSavings)} at a 6 percent annual tariff
             escalation.
           </p>
@@ -131,11 +131,11 @@ export default function SavingsCalculator() {
             </div>
             <ul className="flex items-center gap-4 text-[11px] font-semibold text-muted">
               <li className="inline-flex items-center gap-1.5">
-                <span className="h-0.5 w-4 bg-brand-ink" aria-hidden="true" />
+                <span className="h-2.5 w-2.5 bg-brand-ink" aria-hidden="true" />
                 Your savings
               </li>
               <li className="inline-flex items-center gap-1.5">
-                <span className="h-0.5 w-4 bg-[#7B8D93]" aria-hidden="true" />
+                <span className="h-2.5 w-2.5 bg-[#7B8D93]" aria-hidden="true" />
                 Grid cost
               </li>
             </ul>

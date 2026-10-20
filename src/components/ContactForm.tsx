@@ -234,7 +234,7 @@ export default function ContactForm() {
       <RecaptchaField challenged={challenged} onToken={handleV2Token} />
 
       {serverError && (
-        <p role="alert" className="mt-4 border-l-2 border-[#A32222] bg-[#FDF3F3] px-4 py-3 text-[13px] font-medium text-[#8A1C1C]">
+        <p role="alert" className="mt-4 border border-[#E7C3C3] bg-[#FDF3F3] px-4 py-3 text-[13px] font-medium text-[#8A1C1C]">
           {serverError}
         </p>
       )}

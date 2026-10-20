@@ -41,7 +41,7 @@ export default function RecaptchaField({ challenged, onToken }: RecaptchaFieldPr
   if (!challenged) return null;
 
   return (
-    <div className="border border-line border-l-2 border-l-brand-ink bg-brand-soft p-4">
+    <div className="border border-line bg-brand-soft p-4">
       <p className="text-sm font-semibold text-ink">
         One quick check before we continue
       </p>
